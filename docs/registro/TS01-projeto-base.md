@@ -40,7 +40,7 @@ Nenhum teste automatizado: a TS01 é uma história técnica e o Vitest só é co
 
 ## Decisões e observações
 
-- **Oxlint no lugar do ESLint:** a versão atual do template do Vite traz o **Oxlint** (`.oxlintrc.json`, script `lint: oxlint`) em vez do ESLint. O planejamento define ESLint (TS04). O template foi mantido como veio; a troca (ou a adoção do Oxlint) fica para a TS04, após decisão do responsável.
+- **Oxlint no lugar do ESLint:** a versão atual do template do Vite traz o **Oxlint** (`.oxlintrc.json`, script `lint: oxlint`) em vez do ESLint. O planejamento definia ESLint (TS04). O template foi mantido como veio e, depois da TS01, o responsável decidiu **adotar o Oxlint** no lugar do ESLint; planejamento, backlog e `CLAUDE.md` foram atualizados.
 - **Conteúdo de demonstração:** `App.tsx`, `App.css`, `index.css` e os arquivos de `src/assets` e `public` são os do template. Eles serão substituídos a partir da TS02/US01.
 - **`index.html`:** ainda com `lang="en"` e título `vite-app`; o `lang="pt-BR"` é critério da TS02.
 - **`README.md`:** ainda é o do template, em inglês; será reescrito na TS06.

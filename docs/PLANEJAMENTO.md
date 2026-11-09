@@ -30,7 +30,7 @@ Criar uma aplicação simples com React, Vite e TypeScript que consome a API pú
 | Busca aproximada | Fuse.js   | Responsável |
 | Estado de carregando | Spinner com Tailwind (`animate-spin`) | Responsável |
 | Estado de erro | Componente próprio com Tailwind | Responsável |
-| Qualidade de código | ESLint, Prettier, Husky + lint-staged | Responsável |
+| Qualidade de código | Oxlint, Prettier, Husky + lint-staged | Responsável |
 | Versionamento | Git          | Responsável |
 
 ## 4. Metodologia e organização
@@ -55,7 +55,7 @@ src/
 
 ### 4.3 Qualidade de código
 
-- **ESLint** para análise estática.
+- **Oxlint** para análise estática (já incluído pelo template do Vite; configuração em `.oxlintrc.json`).
 - **Prettier** para formatação automática.
 - **Husky + lint-staged** para validar os arquivos alterados antes de cada commit.
 
@@ -290,6 +290,7 @@ Nenhuma no momento.
 | 09/11/2026 | Sem escolha salva, o modo acompanha a preferência do sistema também com a página aberta |
 | 09/11/2026 | Componentes do guia só são criados quando usados; tokens completos no `tailwind.config` |
 | 09/11/2026 | Backlog: DoD proíbe `any` implícito e explícito; critérios estruturais marcados como *revisão de código*; requisição cancelada com `AbortController`; mensagem de lista vazia com `role="status"` |
+| 09/11/2026 | Análise estática alterada de ESLint para **Oxlint**, que já vem no template atual do Vite |
 | 09/11/2026 | Propostas do backlog confirmadas: termo buscado na mensagem de lista vazia; mensagem quando a API não retorna usuários; modal usa o usuário já carregado (sem nova requisição); clique fora fecha o modal; tema aplicado antes de o React montar (sem piscar); deploy automático via GitHub Actions |
 | 09/11/2026 | Propostas do backlog descartadas: email e website como links no modal; anúncio da contagem de resultados com `aria-live` |
 | 09/11/2026 | Nome do repositório: `desafio-react-junior` (define o `base` do Vite e o endereço do GitHub Pages) |

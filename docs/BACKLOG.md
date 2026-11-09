@@ -24,7 +24,7 @@
 Uma história só está pronta quando:
 
 1. Os testes dos critérios de aceitação foram escritos **antes** da implementação e estão passando; os critérios *(verificação manual)* foram conferidos no navegador.
-2. Código tipado com TypeScript, sem `any` (implícito ou explícito), e organizado na estrutura por tipo (`components/`, `hooks/`, `services/`, `types/`).
+2. Código tipado com TypeScript, sem `any` (implícito ou explícito), e organizado na estrutura por tipo (`components/`, `hooks/`, `services/`, `types/`, `utils/`), com todos os testes em `src/tests/`. Código, comentários e testes em inglês; textos da interface em pt-BR.
 3. Oxlint e Prettier sem erros; hooks do Husky + lint-staged passando no commit.
 4. Commits em Conventional Commits, branch integrada à `main` via merge.
 5. Quando a história tiver interface: funciona em celular e desktop (a partir da conclusão da US12) e nos modos claro e escuro (a partir da conclusão da US13).
@@ -207,7 +207,7 @@ Uma história só está pronta quando:
 11. **Quando** o termo tem 3 letras ou mais, **então** o resultado reúne os nomes que contêm o trecho exato **e** as correspondências aproximadas do Fuse.js (critérios 4 e 5), sem repetições.
 12. **Dado** que um nome contém o trecho buscado, **quando** digito mais uma letra e o nome continua contendo o trecho, **então** ele continua na lista. Ex.: "Leanne Graham" aparece com `gr` e continua com `gra` e `grah`.
 
-**Observação:** a tolerância da busca aproximada depende do `threshold` do Fuse.js, que será ajustado pelos testes dos critérios 4, 5 e 9; como o trecho exato sempre entra no resultado, o `threshold` pode ser rígido, servindo só para tolerar erros de digitação. Para encontrar trechos em qualquer posição do nome, usar `ignoreLocation: true`. Para ignorar acentos, usar a opção do Fuse.js para isso ou normalizar os textos (NFD) antes da busca.
+**Observação:** a tolerância da busca aproximada depende do `threshold` do Fuse.js, que será ajustado pelos testes dos critérios 4, 5 e 9; como o trecho exato sempre entra no resultado, o `threshold` pode ser rígido, servindo só para tolerar erros de digitação (valor atual: **0,2**). Para encontrar trechos em qualquer posição do nome, usar `ignoreLocation: true`. Para ignorar acentos, usar a opção do Fuse.js para isso ou normalizar os textos (NFD) antes da busca.
 
 **Branch:** `feat/name-search`
 

@@ -25,7 +25,7 @@ Total da suíte: 63 testes passando. Lint e build OK.
 
 ## Decisões
 
-- Com a API vazia, a busca e os filtros não aparecem (não há o que filtrar). Registrado em `docs/PENDENCIAS.md`.
+- Com a API vazia, a busca e os filtros não aparecem (não há o que filtrar). Decisão aceita pelo responsável.
 
 ## Textos da interface
 

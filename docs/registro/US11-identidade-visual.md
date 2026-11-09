@@ -44,7 +44,7 @@ Total da suíte: 93 testes passando. Lint e build OK.
 
 ## Decisões
 
-- Sem animação de entrada (~0,4 s, recomendação do guia): não é critério da história e o modal abre instantaneamente. Registrado em `docs/PENDENCIAS.md`.
+- Sem animação de entrada (~0,4 s, recomendação do guia): não é critério da história e o modal abre instantaneamente. Decisão aceita pelo responsável.
 
 ## Textos da interface
 

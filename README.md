@@ -10,7 +10,7 @@ Aplicação em **React + Vite + TypeScript** que consome a API pública [JSONPla
 - **Busca por nome em tempo real**:
   - ignora maiúsculas/minúsculas e acentos (`jose` encontra "José");
   - encontra qualquer parte do nome, como o sobrenome;
-  - tolera erros de digitação a partir de 3 letras (`Lenne Grahm` encontra "Leanne Graham"), com Fuse.js.
+  - tolera erros de digitação (`Lenne Grahm` encontra "Leanne Graham"), com Fuse.js: 1 erro em termos com 5 letras ou mais, 2 erros com 10 ou mais.
 - **Filtros** por cidade e por empresa (opções extraídas dos dados, em ordem alfabética).
 - **Ordenação** por nome, A–Z ou Z–A (títulos como "Mrs." são ignorados para ordenar).
 - **Modal de detalhes** com nome completo, email, telefone, empresa e cidade. Fecha pelo botão, com `Esc` ou clicando no fundo.
@@ -95,7 +95,6 @@ O código-fonte (nomes, comentários e testes) está em inglês; os textos da in
 - [`docs/PLANEJAMENTO.md`](docs/PLANEJAMENTO.md): decisões do projeto e histórico.
 - [`docs/BACKLOG.md`](docs/BACKLOG.md): histórias, critérios de aceitação e Definição de Pronto.
 - [`docs/registro/`](docs/registro): registro de cada história (o que foi feito, testes, decisões e textos).
-- [`docs/PENDENCIAS.md`](docs/PENDENCIAS.md): pontos assumidos durante o desenvolvimento.
 - [`docs/testereactjunior.pdf`](docs/testereactjunior.pdf): enunciado do desafio.
 
 O desenvolvimento seguiu uma branch por história, com commits em Conventional Commits e integração na `main` por merge.

@@ -1,7 +1,7 @@
 # Planejamento — Lista de Usuários (JSONPlaceholder)
 
 > Documento vivo de planejamento. Registra apenas o que foi **definido** pelo responsável do projeto.
-> Status: **desenvolvimento concluído** — todas as histórias do backlog implementadas e publicadas em https://mancijo.github.io/desafio-react-junior/. Pontos assumidos durante o desenvolvimento em [PENDENCIAS.md](./PENDENCIAS.md).
+> Status: **desenvolvimento concluído** — todas as histórias do backlog implementadas e publicadas em https://mancijo.github.io/desafio-react-junior/. Os pontos assumidos durante o desenvolvimento estão na seção "Decisões" de cada registro em [registro/](./registro).
 
 Última atualização: 09/11/2026
 
@@ -51,7 +51,8 @@ src/
 ├── hooks/        # hooks próprios (ex.: requisição à API)
 ├── services/     # acesso à API
 ├── types/        # tipos e interfaces TypeScript
-└── utils/        # funções puras: busca, filtros, ordenação (ver PENDENCIAS.md, item 2)
+├── utils/        # funções puras: busca, filtros, ordenação (pasta adicional, registrada na US04)
+└── tests/        # todos os testes: app/ (integração), components/, hooks/, services/, utils/, mocks/, fixtures/
 ```
 
 ### 4.3 Qualidade de código
@@ -124,6 +125,7 @@ Na lista, cada usuário exibe apenas nome (`name`) e email (`email`).
 - Termos de **1 ou 2 letras** filtram pelo trecho exato, sem tolerância a erros.
 - A partir de **3 letras**, o resultado reúne os nomes que contêm o trecho exato **e** as correspondências aproximadas do Fuse.js. Assim, um nome que contém o trecho nunca some ao digitar mais uma letra.
 - Termos sem relação com nenhum nome (ex.: `xyz`) não retornam resultados.
+- Tolerância da busca aproximada: `threshold` do Fuse.js em **0,2**. Aceita 1 erro de digitação em termos com 5 letras ou mais e 2 erros em termos com 10 ou mais; termos de 3–4 letras só casam por trecho exato.
 
 ### 7.2 Filtros e ordenação
 
@@ -294,6 +296,8 @@ Nenhuma no momento.
 | 09/11/2026 | Código e comentários em **inglês** (nomes, comentários, descrições dos testes, mensagens internas); a interface continua em **pt-BR** |
 | 09/11/2026 | Testes reunidos em `src/tests/` (integração em `app/`, unitários por tipo, `mocks/` e `fixtures/`); `tsconfig` único e Prettier configurado no `package.json` |
 | 09/11/2026 | Mocks de API existem **só nos testes**; a aplicação sempre consome a API real |
+| 09/11/2026 | Busca mais exata: `threshold` do Fuse.js reduzido de 0,3 para **0,2** pelo responsável (elimina correspondências fracas, como `lean` → "Glenna Reichert") |
+| 09/11/2026 | `docs/PENDENCIAS.md` removido pelo responsável: os 5 pontos assumidos foram aceitos e seguem registrados na seção "Decisões" dos registros das histórias |
 | 09/11/2026 | Nome do repositório: `desafio-react-junior` (define o `base` do Vite e o endereço do GitHub Pages) |
 | 09/11/2026 | Sem estimativas, sprints ou prazo: a implementação é feita com IA, história por história, com revisão do responsável ao fim de cada uma |
 | 09/11/2026 | Textos da interface: definidos pelo Claude Code em cada história, em pt-BR, listados no registro da etapa em `docs/` e revisados pelo responsável na entrega; valores da API mantidos no original |

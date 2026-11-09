@@ -17,7 +17,7 @@
   - estrutura de pastas;
   - links para a documentação em `docs/`.
 - `docs/registro/`: um registro por história (TS01–TS06, US01–US14) com o que foi feito, os testes, as decisões e os textos da interface.
-- `docs/PENDENCIAS.md`: pontos assumidos durante o desenvolvimento, para revisão.
+- `docs/PENDENCIAS.md`: pontos assumidos durante o desenvolvimento, para revisão. *(Removido depois pelo responsável, que aceitou os 5 pontos; eles seguem na seção "Decisões" de cada registro.)*
 
 ## Verificações
 

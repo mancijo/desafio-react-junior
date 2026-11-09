@@ -23,7 +23,7 @@ Total da suíte: 26 testes passando. Lint e build OK.
 ## Decisões
 
 - Sem botão "tentar novamente": não está no escopo; a mensagem orienta a recarregar a página.
-- Cor de alerta em vermelho suave (paleta padrão do Tailwind), já que o guia não define cor de erro. Registrado em `docs/PENDENCIAS.md`.
+- Cor de alerta em vermelho suave (paleta padrão do Tailwind), já que o guia não define cor de erro. Decisão aceita pelo responsável.
 
 ## Textos da interface
 

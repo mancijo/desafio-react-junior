@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react'
-import { mockFetchHttpError, mockFetchPending, mockFetchSuccess } from '../test/fetchMock'
-import { usersFixture } from '../test/fixtures/users'
-import { useUsers } from './useUsers'
+import { mockFetchHttpError, mockFetchPending, mockFetchSuccess } from '../mocks/fetchMock'
+import { usersFixture } from '../fixtures/users'
+import { useUsers } from '../../hooks/useUsers'
 
 describe('useUsers', () => {
   it('começa carregando e expõe os usuários quando a requisição termina', async () => {

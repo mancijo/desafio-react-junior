@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react'
-import { usersFixture } from '../test/fixtures/users'
-import { UserList } from './UserList'
+import { usersFixture } from '../fixtures/users'
+import { UserList } from '../../components/UserList'
 
 describe('UserList', () => {
   it('exibe o nome e o email de cada usuário', () => {

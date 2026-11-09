@@ -1,5 +1,5 @@
-import { usersFixture } from '../test/fixtures/users'
-import { sortUsersByName } from './sort'
+import { usersFixture } from '../fixtures/users'
+import { sortUsersByName } from '../../utils/sort'
 
 const ascending = [
   'Ana Júlia Souza',

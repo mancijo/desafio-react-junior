@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { mockMatchMedia } from './matchMedia'
+import { mockMatchMedia } from './mocks/matchMedia'
 
 describe('ambiente de testes', () => {
   it('simula window.matchMedia com o sistema em modo claro por padrão', () => {

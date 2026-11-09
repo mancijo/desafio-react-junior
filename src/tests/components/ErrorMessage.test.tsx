@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { ErrorMessage } from './ErrorMessage'
+import { ErrorMessage } from '../../components/ErrorMessage'
 
 describe('ErrorMessage', () => {
   it('é anunciado a leitores de tela com role="alert"', () => {

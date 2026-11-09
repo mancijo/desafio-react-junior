@@ -1,9 +1,9 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import App from './App'
-import { mockFetchSuccess } from './test/fetchMock'
-import { usersFixture } from './test/fixtures/users'
-import { ptBRCollator } from './utils/collator'
+import App from '../../App'
+import { mockFetchSuccess } from '../mocks/fetchMock'
+import { usersFixture } from '../fixtures/users'
+import { ptBRCollator } from '../../utils/collator'
 
 async function renderLoaded() {
   mockFetchSuccess(usersFixture)

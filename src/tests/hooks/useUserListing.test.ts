@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
-import { usersFixture } from '../test/fixtures/users'
-import { useUserListing } from './useUserListing'
+import { usersFixture } from '../fixtures/users'
+import { useUserListing } from '../../hooks/useUserListing'
 
 const names = (users: { name: string }[]) => users.map((u) => u.name)
 

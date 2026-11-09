@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import App from './App'
-import { mockFetchHttpError, mockFetchNetworkError, mockFetchSuccess } from './test/fetchMock'
+import App from '../../App'
+import { mockFetchHttpError, mockFetchNetworkError, mockFetchSuccess } from '../mocks/fetchMock'
 
 describe('App — erro (US03)', () => {
   it('exibe o componente de erro quando a API responde com status de erro', async () => {

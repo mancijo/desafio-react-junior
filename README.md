@@ -1,8 +1,8 @@
 # Lista de Usuários — Desafio React Júnior
 
-Aplicação em **React + Vite + TypeScript** que consome a API pública [JSONPlaceholder](https://jsonplaceholder.typicode.com/users) e exibe uma lista de usuários com busca, filtros, ordenação e detalhes em modal.
+Aplicação em **React + Vite + TypeScript** que consome a API pública <a href="https://jsonplaceholder.typicode.com/users" target="_blank" rel="noopener noreferrer">JSONPlaceholder</a> e exibe uma lista de usuários com busca, filtros, ordenação e detalhes em modal.
 
-**Aplicação publicada:** https://mancijo.github.io/desafio-react-junior/
+**Aplicação publicada:** <a href="https://mancijo.github.io/desafio-react-junior/" target="_blank" rel="noopener noreferrer">https://mancijo.github.io/desafio-react-junior/</a>
 
 ## Funcionalidades
 
@@ -17,9 +17,26 @@ Aplicação em **React + Vite + TypeScript** que consome a API pública [JSONPla
 - **Estados visuais**: spinner de carregamento, mensagem de erro e aviso quando nenhum usuário é encontrado.
 - **Modo claro e escuro**: segue o sistema na primeira visita; a escolha feita no botão fica salva no navegador.
 - **Responsivo** a partir de 320 px e **acessível**: navegação por teclado, foco preso no modal, rótulos em todos os campos e contraste AA nos dois modos.
-- Interface baseada no guia de identidade visual da CDT Software.
+- **Identidade visual** do site da CDT Software (ver abaixo).
 
 > **Observação sobre os dados:** no JSONPlaceholder, cada um dos 10 usuários tem cidade e empresa diferentes. Por isso, cada filtro sozinho sempre mostra um único usuário, e combinar os dois quase sempre resulta em "nenhum usuário encontrado". O comportamento está correto; os testes usam dados simulados com cidades e empresas repetidas para cobrir esses casos.
+
+## Identidade visual
+
+A interface aplica os padrões visuais do site da empresa, <a href="https://www1.cdtsoftware.com.br/" target="_blank" rel="noopener noreferrer">www1.cdtsoftware.com.br</a>, descritos no <a href="docs/Guia%20de%20Identidade%20Visual%20e%20Interface%20%E2%80%94%20CDT%20Software.md" target="_blank" rel="noopener noreferrer">guia de identidade visual</a> do projeto:
+
+| Padrão do site | Como foi aplicado |
+|----------------|-------------------|
+| Azul ciano de marca (`#00AEEF`) | Destaques no modo escuro e no header; no modo claro, um ciano mais escuro (`#0077A8`) garante o contraste AA sobre branco |
+| Azul-marinho profundo (`#0B1120`) | Fundo do modo escuro e do header fixo, translúcido e com desfoque |
+| Fonte Plus Jakarta Sans | Fonte única da interface, com os pesos do guia (títulos em 800, corpo em 400) |
+| Títulos em caixa alta e sobretítulo ciano | Topo da página e cabeçalho do modal |
+| Cards claros e de vidro, raio de 16 px e borda sutil | Cards de usuário e painel do modal, nos modos claro e escuro |
+| Botões em pílula | Botão de tema e botão de fechar do modal |
+| Ícones em linha fina sobre fundo ciano translúcido | Ícone do header |
+| Transições de 0,3 s | Hover dos cards, campos e botões, respeitando `prefers-reduced-motion` |
+
+Os valores ficam como tokens em `tailwind.config.ts`. Diferente do site, a página usa um único fundo por modo, sem alternar seções claras e escuras.
 
 ## Tecnologias
 
@@ -44,7 +61,7 @@ npm install
 npm run dev
 ```
 
-O endereço aparece no terminal (por padrão, http://localhost:5173/desafio-react-junior/).
+O endereço aparece no terminal (por padrão, <a href="http://localhost:5173/desafio-react-junior/" target="_blank" rel="noopener noreferrer">http://localhost:5173/desafio-react-junior/</a>).
 
 ## Scripts
 
@@ -88,13 +105,11 @@ src/
     └── setup.ts      # configuração do Vitest
 ```
 
-O código-fonte (nomes, comentários e testes) está em inglês; os textos da interface estão em português.
-
 ## Documentação do desenvolvimento
 
-- [`docs/PLANEJAMENTO.md`](docs/PLANEJAMENTO.md): decisões do projeto e histórico.
-- [`docs/BACKLOG.md`](docs/BACKLOG.md): histórias, critérios de aceitação e Definição de Pronto.
-- [`docs/registro/`](docs/registro): registro de cada história (o que foi feito, testes, decisões e textos).
-- [`docs/testereactjunior.pdf`](docs/testereactjunior.pdf): enunciado do desafio.
+- <a href="docs/PLANEJAMENTO.md" target="_blank" rel="noopener noreferrer"><code>docs/PLANEJAMENTO.md</code></a>: decisões do projeto e histórico.
+- <a href="docs/BACKLOG.md" target="_blank" rel="noopener noreferrer"><code>docs/BACKLOG.md</code></a>: histórias, critérios de aceitação e Definição de Pronto.
+- <a href="docs/registro" target="_blank" rel="noopener noreferrer"><code>docs/registro/</code></a>: registro de cada história (o que foi feito, testes, decisões e textos).
+- <a href="docs/testereactjunior.pdf" target="_blank" rel="noopener noreferrer"><code>docs/testereactjunior.pdf</code></a>: enunciado do desafio.
 
 O desenvolvimento seguiu uma branch por história, com commits em Conventional Commits e integração na `main` por merge.

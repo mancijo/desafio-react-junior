@@ -18,7 +18,8 @@ Instruções para o Claude Code neste repositório. Antes de qualquer tarefa, le
 ## Stack
 
 - React + Vite + TypeScript
-- Tailwind CSS (`darkMode: 'class'`, tokens da identidade visual no `tailwind.config`)
+- Tailwind CSS v4 (`darkMode: 'class'`, tokens da identidade visual no `tailwind.config.ts`, carregado com `@config` em `src/index.css`)
+- Fonte Plus Jakarta Sans servida pelo projeto (`@fontsource-variable/plus-jakarta-sans`)
 - Requisições com `fetch` nativo encapsulado em hook próprio (ex.: `useUsers`)
 - Busca aproximada com Fuse.js
 - Testes: Vitest + React Testing Library (configuração no `vite.config.ts`, ambiente `jsdom`)

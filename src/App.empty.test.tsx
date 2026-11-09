@@ -62,8 +62,10 @@ describe('App — nenhum usuário encontrado (US05)', () => {
   })
 
   it('quando a API não retorna usuários, exibe "Nenhum usuário cadastrado."', async () => {
-    await renderLoaded([])
+    mockFetchSuccess([])
+    render(<App />)
 
+    expect(await screen.findByText('Nenhum usuário cadastrado.')).toBeInTheDocument()
     expect(screen.getByRole('status')).toHaveTextContent('Nenhum usuário cadastrado.')
     expect(screen.queryByRole('list')).not.toBeInTheDocument()
   })

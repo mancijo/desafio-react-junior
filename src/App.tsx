@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { EmptyState } from './components/EmptyState'
 import { ErrorMessage } from './components/ErrorMessage'
 import { LoadingSpinner } from './components/LoadingSpinner'
 import { SearchBar } from './components/SearchBar'
@@ -47,7 +48,10 @@ function App() {
         <div className="mt-8">
           {status === 'loading' && <LoadingSpinner />}
           {status === 'error' && <ErrorMessage />}
-          {status === 'success' && (
+          {status === 'success' && users.length === 0 && (
+            <EmptyState title="Nenhum usuário cadastrado." />
+          )}
+          {status === 'success' && users.length > 0 && (
             <div className="flex flex-col gap-8">
               <div className="grid gap-4 md:grid-cols-3">
                 <SearchBar value={searchTerm} onChange={setSearchTerm} />
@@ -64,7 +68,18 @@ function App() {
                   onChange={(company) => setFilters((current) => ({ ...current, company }))}
                 />
               </div>
-              <UserList users={visibleUsers} onSelect={() => {}} />
+              {visibleUsers.length > 0 ? (
+                <UserList users={visibleUsers} onSelect={() => {}} />
+              ) : (
+                <EmptyState
+                  title={
+                    searchTerm.trim()
+                      ? `Nenhum usuário encontrado para "${searchTerm.trim()}".`
+                      : 'Nenhum usuário encontrado.'
+                  }
+                  description="Tente outro nome ou altere os filtros."
+                />
+              )}
             </div>
           )}
         </div>

@@ -4,8 +4,10 @@ import { ErrorMessage } from './components/ErrorMessage'
 import { LoadingSpinner } from './components/LoadingSpinner'
 import { SearchBar } from './components/SearchBar'
 import { SelectField } from './components/SelectField'
+import { UserDetailsModal } from './components/UserDetailsModal'
 import { UserList } from './components/UserList'
 import { useUsers } from './hooks/useUsers'
+import type { User } from './types/user'
 import {
   NO_FILTERS,
   filterUsers,
@@ -26,6 +28,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [filters, setFilters] = useState<UserFilters>(NO_FILTERS)
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc')
+  const [selectedUser, setSelectedUser] = useState<User | null>(null)
 
   const cityOptions = useMemo(
     () => [
@@ -82,7 +85,7 @@ function App() {
                 />
               </div>
               {visibleUsers.length > 0 ? (
-                <UserList users={visibleUsers} onSelect={() => {}} />
+                <UserList users={visibleUsers} onSelect={(user) => setSelectedUser(user)} />
               ) : (
                 <EmptyState
                   title={
@@ -97,6 +100,10 @@ function App() {
           )}
         </div>
       </main>
+
+      {selectedUser && (
+        <UserDetailsModal user={selectedUser} onClose={() => setSelectedUser(null)} />
+      )}
     </div>
   )
 }

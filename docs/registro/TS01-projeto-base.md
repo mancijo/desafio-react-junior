@@ -2,7 +2,7 @@
 
 - **Branch:** `chore/project-setup`
 - **Data:** 09/11/2026
-- **Situação:** concluída localmente; falta publicar o repositório no GitHub (push a pedido do responsável).
+- **Situação:** concluída. Integrada à `main` (merge `18b420a`) e publicada em https://github.com/mancijo/desafio-react-junior.
 
 ## O que foi feito
 
@@ -25,7 +25,7 @@
 | 1. Projeto criado com Vite (React + TS) | `create-vite --template react-ts` | OK |
 | 2. `npm install` + `npm run dev` sem erros | `npm install` (0 vulnerabilidades); servidor respondeu HTTP 200 em `localhost:5173` e a página renderizou sem erros no console | OK |
 | 3. Estrutura `src/components`, `hooks`, `services`, `types` | Pastas criadas e versionadas | OK |
-| 4. Git, `.gitignore`, Conventional Commits, repositório público | Git local e commits OK; **push para o GitHub pendente** | Parcial |
+| 4. Git, `.gitignore`, Conventional Commits, repositório público | Commits em Conventional Commits; repositório público criado com `gh repo create` e branches `main` e `chore/project-setup` enviadas | OK |
 | 5. `docs/` e `CLAUDE.md` no primeiro commit | 1º commit da `main` | OK |
 
 Outros comandos da DoD:

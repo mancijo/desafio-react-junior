@@ -18,7 +18,16 @@ export function getCityOptions(users: User[]): string[] {
   return uniqueSorted(users.map((user) => user.address.city))
 }
 
-/** Aplica os filtros, preservando a ordem original. */
+/** Empresas presentes nos dados, sem repetições, em ordem alfabética pt-BR. */
+export function getCompanyOptions(users: User[]): string[] {
+  return uniqueSorted(users.map((user) => user.company.name))
+}
+
+/** Aplica os filtros (cidade e empresa combinados), preservando a ordem original. */
 export function filterUsers(users: User[], filters: UserFilters): User[] {
-  return users.filter((user) => filters.city === '' || user.address.city === filters.city)
+  return users.filter(
+    (user) =>
+      (filters.city === '' || user.address.city === filters.city) &&
+      (filters.company === '' || user.company.name === filters.company),
+  )
 }

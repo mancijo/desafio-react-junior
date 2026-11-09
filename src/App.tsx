@@ -5,7 +5,13 @@ import { SearchBar } from './components/SearchBar'
 import { SelectField } from './components/SelectField'
 import { UserList } from './components/UserList'
 import { useUsers } from './hooks/useUsers'
-import { NO_FILTERS, filterUsers, getCityOptions, type UserFilters } from './utils/filters'
+import {
+  NO_FILTERS,
+  filterUsers,
+  getCityOptions,
+  getCompanyOptions,
+  type UserFilters,
+} from './utils/filters'
 import { searchUsersByName } from './utils/search'
 
 function App() {
@@ -17,6 +23,14 @@ function App() {
     () => [
       { value: '', label: 'Todas as cidades' },
       ...getCityOptions(users).map((city) => ({ value: city, label: city })),
+    ],
+    [users],
+  )
+
+  const companyOptions = useMemo(
+    () => [
+      { value: '', label: 'Todas as empresas' },
+      ...getCompanyOptions(users).map((company) => ({ value: company, label: company })),
     ],
     [users],
   )
@@ -35,13 +49,19 @@ function App() {
           {status === 'error' && <ErrorMessage />}
           {status === 'success' && (
             <div className="flex flex-col gap-8">
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-4 md:grid-cols-3">
                 <SearchBar value={searchTerm} onChange={setSearchTerm} />
                 <SelectField
                   label="Cidade"
                   value={filters.city}
                   options={cityOptions}
                   onChange={(city) => setFilters((current) => ({ ...current, city }))}
+                />
+                <SelectField
+                  label="Empresa"
+                  value={filters.company}
+                  options={companyOptions}
+                  onChange={(company) => setFilters((current) => ({ ...current, company }))}
                 />
               </div>
               <UserList users={visibleUsers} onSelect={() => {}} />

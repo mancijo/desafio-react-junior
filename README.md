@@ -64,7 +64,9 @@ O endereço aparece no terminal (por padrão, http://localhost:5173/desafio-reac
 npm test
 ```
 
-Os testes foram escritos **antes** da implementação (TDD), um por critério de aceitação do backlog. Eles nunca chamam a API real: usam `fetch` simulado e dados de exemplo com nomes acentuados (os dados reais não têm acentos).
+Os testes foram escritos **antes** da implementação (TDD), um por critério de aceitação do backlog.
+
+> **API real × mock:** a aplicação (em `npm run dev` e no GitHub Pages) **sempre consome a API real** do JSONPlaceholder; não há nenhum mock no código da aplicação. O `fetch` simulado e os dados de exemplo existem **só nos testes** (`src/tests/mocks` e `src/tests/fixtures`), para que eles não dependam da internet e possam cobrir casos que a API real não oferece: erro HTTP, falha de rede, resposta fora do formato e nomes acentuados.
 
 ## Estrutura
 
@@ -73,10 +75,20 @@ src/
 ├── components/   # componentes de interface (cards, modal, campos, estados)
 ├── hooks/        # useUsers, useUserListing, useTheme, useModalBehavior
 ├── services/     # acesso à API (fetchUsers)
-├── types/        # User, Address, Company, Geo
+├── types/        # User, Address, Company, Geo, SelectOption
 ├── utils/        # funções puras: busca, filtros, ordenação, normalização de texto
-└── test/         # configuração dos testes, mocks e dados de exemplo
+└── tests/        # todos os testes
+    ├── app/          # integração: o App inteiro, um arquivo por história
+    ├── components/   # unitários dos componentes
+    ├── hooks/        # unitários dos hooks
+    ├── services/     # unitários do acesso à API
+    ├── utils/        # unitários das funções puras
+    ├── mocks/        # fetch e matchMedia simulados
+    ├── fixtures/     # dados de exemplo
+    └── setup.ts      # configuração do Vitest
 ```
+
+O código-fonte (nomes, comentários e testes) está em inglês; os textos da interface estão em português.
 
 ## Documentação do desenvolvimento
 

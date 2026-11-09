@@ -15,6 +15,7 @@ Instruções para o Claude Code neste repositório. Antes de qualquer tarefa, le
 - **Textos da interface:** você define os textos de cada história (título, rótulos, placeholders, mensagens, `aria-label`). Escreva em pt-BR, curtos e claros; mantenha os valores da API no original. Liste os textos usados no registro da etapa em `docs/`, para revisão na entrega.
 - Ao surgir uma nova decisão, registre-a no `docs/PLANEJAMENTO.md` (seção e histórico de decisões).
 - Responda e documente em **português (pt-BR)**.
+- **Código em inglês:** nomes, comentários, descrições dos testes (`describe`/`it`), mensagens de erro internas e dados de exemplo em inglês. Só os textos exibidos ao usuário ficam em pt-BR. Mensagens de commit continuam em pt-BR.
 
 ## Stack
 
@@ -45,7 +46,7 @@ npm run build    # build de produção
 
 Regras dos testes:
 
-- Nunca chame a API real: use `fetch` simulado e fixtures.
+- Nunca chame a API real nos testes: use `fetch` simulado e fixtures. Os mocks existem **só** em `src/tests/`; a aplicação sempre consome a API real.
 - As fixtures incluem nomes acentuados (os dados reais do JSONPlaceholder não têm acentos).
 - Simulações com `vi.fn()`, `vi.spyOn()` e `vi.mock()`; interações com `@testing-library/user-event`.
 - O jsdom não implementa bem o `<dialog>` nativo (`showModal()`); se usá-lo no modal, simule-o nos testes.
@@ -55,12 +56,22 @@ Regras dos testes:
 ```
 src/
 ├── components/   # componentes de interface
-├── hooks/        # hooks próprios (ex.: useUsers, useUserSearch)
+├── hooks/        # hooks próprios (useUsers, useUserListing, useTheme, useModalBehavior)
 ├── services/     # acesso à API
-├── types/        # User, Address, Company, Geo
+├── types/        # User, Address, Company, Geo, SelectOption
 ├── utils/        # funções puras: busca, filtros, ordenação, texto
-└── test/         # setup, mocks (fetch, matchMedia) e fixtures
+└── tests/        # todos os testes (nenhum teste fora daqui)
+    ├── app/          # integração: o App inteiro, um arquivo por história
+    ├── components/   # unitários, espelhando src/components
+    ├── hooks/        # unitários, espelhando src/hooks
+    ├── services/     # unitários, espelhando src/services
+    ├── utils/        # unitários, espelhando src/utils
+    ├── mocks/        # fetch e matchMedia simulados
+    ├── fixtures/     # dados de exemplo
+    └── setup.ts      # configuração do Vitest
 ```
+
+- Na raiz ficam só as configurações obrigatórias: `tsconfig.json` único, Prettier dentro do `package.json`.
 
 - Código totalmente tipado; sem `any`.
 - Componentes pequenos e reutilizáveis; lógica de busca, filtros e ordenação isolada e testável.

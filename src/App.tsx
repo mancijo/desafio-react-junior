@@ -2,15 +2,29 @@ import { useMemo, useState } from 'react'
 import { ErrorMessage } from './components/ErrorMessage'
 import { LoadingSpinner } from './components/LoadingSpinner'
 import { SearchBar } from './components/SearchBar'
+import { SelectField } from './components/SelectField'
 import { UserList } from './components/UserList'
 import { useUsers } from './hooks/useUsers'
+import { NO_FILTERS, filterUsers, getCityOptions, type UserFilters } from './utils/filters'
 import { searchUsersByName } from './utils/search'
 
 function App() {
   const { users, status } = useUsers()
   const [searchTerm, setSearchTerm] = useState('')
+  const [filters, setFilters] = useState<UserFilters>(NO_FILTERS)
 
-  const visibleUsers = useMemo(() => searchUsersByName(users, searchTerm), [users, searchTerm])
+  const cityOptions = useMemo(
+    () => [
+      { value: '', label: 'Todas as cidades' },
+      ...getCityOptions(users).map((city) => ({ value: city, label: city })),
+    ],
+    [users],
+  )
+
+  const visibleUsers = useMemo(
+    () => filterUsers(searchUsersByName(users, searchTerm), filters),
+    [users, searchTerm, filters],
+  )
 
   return (
     <div className="min-h-screen bg-white font-sans dark:bg-navy">
@@ -21,7 +35,15 @@ function App() {
           {status === 'error' && <ErrorMessage />}
           {status === 'success' && (
             <div className="flex flex-col gap-8">
-              <SearchBar value={searchTerm} onChange={setSearchTerm} />
+              <div className="grid gap-4 md:grid-cols-2">
+                <SearchBar value={searchTerm} onChange={setSearchTerm} />
+                <SelectField
+                  label="Cidade"
+                  value={filters.city}
+                  options={cityOptions}
+                  onChange={(city) => setFilters((current) => ({ ...current, city }))}
+                />
+              </div>
               <UserList users={visibleUsers} onSelect={() => {}} />
             </div>
           )}

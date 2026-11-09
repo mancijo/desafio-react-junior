@@ -11,6 +11,8 @@
 - `package.json` renomeado para `desafio-react-junior` (nome do repositório).
 - Estrutura por tipo criada: `src/components`, `src/hooks`, `src/services`, `src/types` (com `.gitkeep` para o Git versionar as pastas vazias).
 - `.gitignore` do template mantido (ignora `node_modules`, `dist`, `*.local`, logs e arquivos de editor).
+- `.gitattributes` adicionado: finais de linha LF no repositório e arquivos binários (PDF, imagens, fontes) nunca convertidos. Sem ele, o Git desta máquina (`core.autocrlf=true`) converteria o PDF do enunciado para CRLF no checkout, corrompendo o arquivo.
+- Autor dos commits configurado só neste repositório (`git config` local): Andrei Mancijo.
 - `claude.md` renomeado para `CLAUDE.md`, nome que o Claude Code procura em sistemas que diferenciam maiúsculas/minúsculas (Linux, GitHub).
 - Repositório Git iniciado na branch `main`:
   - 1º commit na `main`: documentação (`docs/` e `CLAUDE.md`).

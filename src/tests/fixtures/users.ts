@@ -18,26 +18,26 @@ function makeUser(seed: UserSeed): User {
     phone: `1-770-736-80${String(seed.id).padStart(2, '0')}`,
     website: `${seed.username.toLowerCase()}.org`,
     address: {
-      street: `Rua ${seed.id}`,
-      suite: `Apto. ${seed.id}0${seed.id}`,
+      street: `Street ${seed.id}`,
+      suite: `Apt. ${seed.id}0${seed.id}`,
       city: seed.city,
       zipcode: `0${seed.id}000-000`,
       geo: { lat: `-23.5${seed.id}`, lng: `-46.6${seed.id}` },
     },
     company: {
       name: seed.company,
-      catchPhrase: `Slogan da ${seed.company}`,
-      bs: `ramo da ${seed.company}`,
+      catchPhrase: `${seed.company} catchphrase`,
+      bs: `${seed.company} business`,
     },
   }
 }
 
 /**
- * 10 usuários, na ordem em que a "API" os devolve (fora de ordem alfabética).
- * Inclui nomes reais do JSONPlaceholder e nomes acentuados, que a API real não tem.
- * - "São Paulo" e "Café & Cia" / "Açaí Tech" se repetem (opções sem duplicatas).
- * - "Mrs. Dennis Schulist" testa a ordenação que ignora títulos.
- * - o username "qwzk" não se parece com nenhum nome (busca só por `name`).
+ * 10 users, in the order the "API" returns them (not alphabetical).
+ * Includes real JSONPlaceholder names and accented names, which the real API does not have.
+ * - "São Paulo" and "Café & Cia" / "Açaí Tech" repeat (options without duplicates).
+ * - "Mrs. Dennis Schulist" tests sorting that ignores titles.
+ * - the username "qwzk" does not look like any name (search only uses `name`).
  */
 export const usersFixture: User[] = [
   {
@@ -60,7 +60,7 @@ export const usersFixture: User[] = [
     id: 3,
     name: 'José Araújo',
     username: 'qwzk',
-    email: 'jose@exemplo.com.br',
+    email: 'jose@example.com',
     city: 'São Paulo',
     company: 'Café & Cia',
   },
@@ -76,7 +76,7 @@ export const usersFixture: User[] = [
     id: 5,
     name: 'Érica Gonçalves',
     username: 'ericag',
-    email: 'erica@exemplo.com.br',
+    email: 'erica@example.com',
     city: 'São Paulo',
     company: 'Açaí Tech',
   },
@@ -92,7 +92,7 @@ export const usersFixture: User[] = [
     id: 7,
     name: 'Ana Júlia Souza',
     username: 'anajulia',
-    email: 'ana@exemplo.com.br',
+    email: 'ana@example.com',
     city: 'Curitiba',
     company: 'Café & Cia',
   },
@@ -100,7 +100,7 @@ export const usersFixture: User[] = [
     id: 8,
     name: 'Eduardo Lima',
     username: 'edu',
-    email: 'eduardo@exemplo.com.br',
+    email: 'eduardo@example.com',
     city: 'Belo Horizonte',
     company: 'Açaí Tech',
   },
@@ -122,9 +122,9 @@ export const usersFixture: User[] = [
   },
 ].map(makeUser)
 
-/** Busca um usuário da fixture pelo nome. */
+/** Finds a fixture user by name. */
 export function fixtureUser(name: string): User {
   const user = usersFixture.find((u) => u.name === name)
-  if (!user) throw new Error(`Usuário "${name}" não existe na fixture`)
+  if (!user) throw new Error(`User "${name}" is not in the fixture`)
   return user
 }

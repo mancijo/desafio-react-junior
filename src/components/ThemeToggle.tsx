@@ -5,7 +5,7 @@ interface ThemeToggleProps {
   onToggle: () => void
 }
 
-/** Botão em pílula que alterna o modo; o rótulo acessível indica a ação. */
+/** Pill button that toggles the mode; its accessible label describes the action. */
 export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
   const isDark = theme === 'dark'
   const label = isDark ? 'Ativar modo claro' : 'Ativar modo escuro'

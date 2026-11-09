@@ -1,10 +1,10 @@
-/** Coordenadas geográficas do endereço. */
+/** Geographic coordinates of the address. */
 export interface Geo {
   lat: string
   lng: string
 }
 
-/** Endereço do usuário. */
+/** User address. */
 export interface Address {
   street: string
   suite: string
@@ -13,14 +13,14 @@ export interface Address {
   geo: Geo
 }
 
-/** Empresa em que o usuário trabalha. */
+/** Company the user works for. */
 export interface Company {
   name: string
   catchPhrase: string
   bs: string
 }
 
-/** Usuário retornado por https://jsonplaceholder.typicode.com/users. */
+/** User returned by https://jsonplaceholder.typicode.com/users. */
 export interface User {
   id: number
   name: string

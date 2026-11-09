@@ -2,12 +2,12 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { mockMatchMedia } from './mocks/matchMedia'
 
-describe('ambiente de testes', () => {
-  it('simula window.matchMedia com o sistema em modo claro por padrão', () => {
+describe('test environment', () => {
+  it('mocks window.matchMedia with the system in light mode by default', () => {
     expect(window.matchMedia('(prefers-color-scheme: dark)').matches).toBe(false)
   })
 
-  it('permite simular a troca da preferência do sistema', () => {
+  it('allows simulating a change in the system preference', () => {
     const controller = mockMatchMedia(false)
     const mql = window.matchMedia('(prefers-color-scheme: dark)')
     const listener = vi.fn()
@@ -19,12 +19,12 @@ describe('ambiente de testes', () => {
     expect(listener).toHaveBeenCalledWith(expect.objectContaining({ matches: true }))
   })
 
-  it('disponibiliza o user-event para simular digitação', async () => {
+  it('provides user-event to simulate typing', async () => {
     const user = userEvent.setup()
-    render(<input aria-label="Campo" />)
+    render(<input aria-label="Field" />)
 
-    await user.type(screen.getByLabelText('Campo'), 'olá')
+    await user.type(screen.getByLabelText('Field'), 'olá')
 
-    expect(screen.getByLabelText('Campo')).toHaveValue('olá')
+    expect(screen.getByLabelText('Field')).toHaveValue('olá')
   })
 })

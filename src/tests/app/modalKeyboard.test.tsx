@@ -13,8 +13,8 @@ async function openLeanne() {
   return { user, card, dialog: screen.getByRole('dialog') }
 }
 
-describe('App — modal pelo teclado (US10)', () => {
-  it('Esc fecha o modal', async () => {
+describe('App — modal with the keyboard (US10)', () => {
+  it('Esc closes the modal', async () => {
     const { user } = await openLeanne()
 
     await user.keyboard('{Escape}')
@@ -22,7 +22,7 @@ describe('App — modal pelo teclado (US10)', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 
-  it('clicar no fundo fecha o modal', async () => {
+  it('clicking the backdrop closes the modal', async () => {
     const { user } = await openLeanne()
 
     await user.click(screen.getByTestId('modal-backdrop'))
@@ -30,7 +30,7 @@ describe('App — modal pelo teclado (US10)', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 
-  it('clicar dentro do modal não o fecha', async () => {
+  it('clicking inside the modal does not close it', async () => {
     const { user, dialog } = await openLeanne()
 
     await user.click(dialog)
@@ -38,13 +38,13 @@ describe('App — modal pelo teclado (US10)', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument()
   })
 
-  it('ao abrir, o foco vai para dentro do modal', async () => {
+  it('on open, focus moves inside the modal', async () => {
     const { dialog } = await openLeanne()
 
     expect(dialog).toContainElement(document.activeElement as HTMLElement)
   })
 
-  it('enquanto aberto, Tab e Shift+Tab não saem do modal', async () => {
+  it('while open, Tab and Shift+Tab do not leave the modal', async () => {
     const { user, dialog } = await openLeanne()
 
     for (let i = 0; i < 4; i++) {
@@ -57,7 +57,7 @@ describe('App — modal pelo teclado (US10)', () => {
     }
   })
 
-  it('ao fechar pelo botão, o foco volta para o usuário que abriu o modal', async () => {
+  it('closing with the button returns focus to the user that opened the modal', async () => {
     const { user, card } = await openLeanne()
 
     await user.click(screen.getByRole('button', { name: 'Fechar detalhes' }))
@@ -65,7 +65,7 @@ describe('App — modal pelo teclado (US10)', () => {
     expect(card).toHaveFocus()
   })
 
-  it('ao fechar com Esc, o foco volta para o usuário que abriu o modal', async () => {
+  it('closing with Esc returns focus to the user that opened the modal', async () => {
     const { user, card } = await openLeanne()
 
     await user.keyboard('{Escape}')

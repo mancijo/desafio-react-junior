@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-/* Tokens da identidade visual e darkMode: 'class' */
+/* Visual identity tokens and darkMode: 'class' */
 @config '../tailwind.config.ts';
 
 @layer base {
@@ -21,7 +21,7 @@
   }
 }
 
-/* Respeita quem prefere menos movimento: animações e transições quase instantâneas. */
+/* Respects reduced motion preferences: near-instant animations and transitions. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

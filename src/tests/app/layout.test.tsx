@@ -3,8 +3,8 @@ import App from '../../App'
 import { mockFetchSuccess } from '../mocks/fetchMock'
 import { usersFixture } from '../fixtures/users'
 
-describe('App — identidade visual e estrutura (US11)', () => {
-  it('tem um header (landmark banner) com o nome da aplicação', () => {
+describe('App — visual identity and structure (US11)', () => {
+  it('has a header (banner landmark) with the app name', () => {
     mockFetchSuccess(usersFixture)
     render(<App />)
 
@@ -12,7 +12,7 @@ describe('App — identidade visual e estrutura (US11)', () => {
     expect(within(header).getByText('Desafio React Júnior')).toBeInTheDocument()
   })
 
-  it('o header é fixo e usa o fundo marinho com desfoque e borda inferior', () => {
+  it('the header is fixed with a navy background, blur and bottom border', () => {
     mockFetchSuccess(usersFixture)
     render(<App />)
 
@@ -23,7 +23,7 @@ describe('App — identidade visual e estrutura (US11)', () => {
     expect(header.className).toMatch(/border-b/)
   })
 
-  it('o título principal é um <h1> real dentro do conteúdo principal', () => {
+  it('the main title is a real <h1> inside the main content', () => {
     mockFetchSuccess(usersFixture)
     render(<App />)
 

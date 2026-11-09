@@ -17,8 +17,8 @@ const listedNames = () =>
     .getAllByRole('listitem')
     .map((item) => within(item).getByRole('button').querySelector('span')?.textContent)
 
-describe('App — filtro por cidade (US06)', () => {
-  it('lista as cidades dos dados, sem repetições, depois de "Todas as cidades"', async () => {
+describe('App — city filter (US06)', () => {
+  it('lists the cities from the data, without duplicates, after "Todas as cidades"', async () => {
     await renderLoaded()
     const select = screen.getByLabelText('Cidade')
     const options = within(select)
@@ -30,7 +30,7 @@ describe('App — filtro por cidade (US06)', () => {
     expect(options.filter((o) => o === 'São Paulo')).toHaveLength(1)
   })
 
-  it('ao escolher uma cidade, exibe apenas os usuários dela', async () => {
+  it('choosing a city shows only its users', async () => {
     const user = await renderLoaded()
 
     await user.selectOptions(screen.getByLabelText('Cidade'), 'São Paulo')
@@ -39,7 +39,7 @@ describe('App — filtro por cidade (US06)', () => {
     expect(listedNames()).toEqual(expect.arrayContaining(['José Araújo', 'Érica Gonçalves']))
   })
 
-  it('"Todas as cidades" remove o filtro', async () => {
+  it('"Todas as cidades" removes the filter', async () => {
     const user = await renderLoaded()
     const select = screen.getByLabelText('Cidade')
 
@@ -49,7 +49,7 @@ describe('App — filtro por cidade (US06)', () => {
     expect(screen.getAllByRole('listitem')).toHaveLength(usersFixture.length)
   })
 
-  it('funciona em conjunto com a busca por nome', async () => {
+  it('works together with the name search', async () => {
     const user = await renderLoaded()
 
     await user.selectOptions(screen.getByLabelText('Cidade'), 'São Paulo')

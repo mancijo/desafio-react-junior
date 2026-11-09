@@ -26,15 +26,15 @@ const isSorted = (names: string[], order: 'asc' | 'desc') =>
     return order === 'asc' ? cmp <= 0 : cmp >= 0
   })
 
-describe('App — ordenação por nome (US08)', () => {
-  it('ao carregar, a lista está em ordem A–Z (e não na ordem da API)', async () => {
+describe('App — sort by name (US08)', () => {
+  it('on load, the list is in A–Z order (not in API order)', async () => {
     await renderLoaded()
 
     expect(listedNames()[0]).toBe('Ana Júlia Souza')
     expect(isSorted(listedNames(), 'asc')).toBe(true)
   })
 
-  it('o seletor de ordenação tem apenas A–Z e Z–A, com A–Z selecionado', async () => {
+  it('the sort select has only A–Z and Z–A, with A–Z selected', async () => {
     await renderLoaded()
     const select = screen.getByLabelText('Ordenar por nome')
 
@@ -46,7 +46,7 @@ describe('App — ordenação por nome (US08)', () => {
     expect(select).toHaveDisplayValue('A–Z')
   })
 
-  it('ao escolher Z–A, a lista fica em ordem decrescente', async () => {
+  it('choosing Z–A sorts the list in descending order', async () => {
     const user = await renderLoaded()
 
     await user.selectOptions(screen.getByLabelText('Ordenar por nome'), 'Z–A')
@@ -55,16 +55,16 @@ describe('App — ordenação por nome (US08)', () => {
     expect(isSorted(listedNames(), 'desc')).toBe(true)
   })
 
-  it('ordena o resultado dos filtros', async () => {
+  it('sorts the filtered result', async () => {
     const user = await renderLoaded()
 
-    // A API devolve José antes de Érica
+    // The API returns José before Érica
     await user.selectOptions(screen.getByLabelText('Cidade'), 'São Paulo')
 
     expect(listedNames()).toEqual(['Érica Gonçalves', 'José Araújo'])
   })
 
-  it('com busca ativa, a ordenação por nome prevalece', async () => {
+  it('with an active search, sorting by name prevails', async () => {
     const user = await renderLoaded()
 
     await user.type(screen.getByLabelText('Buscar por nome'), 'e')

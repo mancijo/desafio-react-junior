@@ -11,8 +11,8 @@ export interface UseUsersResult {
 }
 
 /**
- * Carrega os usuários da API e expõe dados, carregamento e erro.
- * A requisição é cancelada (AbortController) se o componente desmontar antes de terminar.
+ * Loads users from the API and exposes data, loading and error states.
+ * The request is aborted (AbortController) if the component unmounts before it finishes.
  */
 export function useUsers(): UseUsersResult {
   const [state, setState] = useState<UseUsersResult>({

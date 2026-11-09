@@ -4,12 +4,12 @@ const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
 /**
- * Comportamento de modal acessível:
- * - ao abrir, move o foco para `initialFocusRef` (ou para o contêiner);
- * - `Esc` chama `onClose`;
- * - `Tab` e `Shift+Tab` circulam apenas dentro do contêiner (foco preso);
- * - impede a rolagem da página ao fundo;
- * - ao fechar, devolve o foco ao elemento que estava focado antes da abertura.
+ * Accessible modal behavior:
+ * - on open, moves focus to `initialFocusRef` (or to the container);
+ * - `Esc` calls `onClose`;
+ * - `Tab` and `Shift+Tab` cycle only inside the container (focus trap);
+ * - prevents the page behind from scrolling;
+ * - on close, returns focus to the element that was focused before opening.
  */
 export function useModalBehavior(
   containerRef: RefObject<HTMLElement | null>,

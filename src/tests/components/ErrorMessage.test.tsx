@@ -2,13 +2,13 @@ import { render, screen } from '@testing-library/react'
 import { ErrorMessage } from '../../components/ErrorMessage'
 
 describe('ErrorMessage', () => {
-  it('é anunciado a leitores de tela com role="alert"', () => {
+  it('is announced to screen readers with role="alert"', () => {
     render(<ErrorMessage />)
 
     expect(screen.getByRole('alert')).toBeInTheDocument()
   })
 
-  it('exibe uma mensagem clara sobre a falha', () => {
+  it('shows a clear message about the failure', () => {
     render(<ErrorMessage />)
 
     expect(screen.getByRole('alert')).toHaveTextContent('Não foi possível carregar os usuários.')

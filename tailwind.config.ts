@@ -1,8 +1,8 @@
 import type { Config } from 'tailwindcss'
 
 /**
- * Tokens da identidade visual (docs/PLANEJAMENTO.md, seção 7.3).
- * Carregado pelo Tailwind v4 via `@config` em src/index.css.
+ * Visual identity tokens (docs/PLANEJAMENTO.md, section 7.3).
+ * Loaded by Tailwind v4 through `@config` in src/index.css.
  */
 export default {
   darkMode: 'class',
@@ -10,28 +10,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Ciano de marca: usado sobre fundo marinho (modo escuro e header)
+        // Brand cyan: used on navy backgrounds (dark mode and header)
         primary: {
           DEFAULT: '#00AEEF',
-          // Ciano escuro: destaques no modo claro (contraste AA sobre branco)
+          // Dark cyan: light mode accents (AA contrast on white)
           dark: '#0077A8',
-          // Ciano translúcido: fundo de ícones e chips
+          // Translucent cyan: icon and chip backgrounds
           soft: 'rgba(0, 174, 239, 0.12)',
           subtle: 'rgba(0, 174, 239, 0.09)',
         },
         navy: {
-          // Fundo escuro principal
+          // Main dark background
           DEFAULT: '#0B1120',
-          // Fundo escuro do rodapé
+          // Dark footer background
           deep: '#07101F',
-          // Fundo do header (com backdrop-blur)
+          // Header background (with backdrop-blur)
           header: 'rgba(11, 17, 32, 0.82)',
         },
         heading: '#0F172A',
         'secondary-dark': '#172033',
         body: '#475569',
         'border-subtle': 'rgba(148, 163, 184, 0.32)',
-        // Borda de campos de formulário: contraste 3:1 exigido para componentes (WCAG 1.4.11)
+        // Form field border: 3:1 contrast required for components (WCAG 1.4.11)
         'border-strong': '#64748B',
         glass: {
           DEFAULT: 'rgba(255, 255, 255, 0.05)',

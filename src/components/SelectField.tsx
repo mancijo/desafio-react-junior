@@ -8,7 +8,7 @@ interface SelectFieldProps {
   onChange: (value: string) => void
 }
 
-/** Lista de seleção com rótulo visível. */
+/** Select field with a visible label. */
 export function SelectField({ label, value, options, onChange }: SelectFieldProps) {
   const id = useId()
 

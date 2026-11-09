@@ -7,9 +7,9 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 /**
- * Confere em tempo de execução os campos que a aplicação usa.
- * O tipo `User` só existe na compilação; sem esta checagem, uma resposta
- * em outro formato quebraria a interface em vez de mostrar o erro.
+ * Checks at runtime the fields the app uses.
+ * The `User` type only exists at compile time; without this check, a response
+ * in another format would crash the UI instead of showing the error.
  */
 function isUser(value: unknown): value is User {
   if (!isRecord(value)) return false
@@ -30,20 +30,20 @@ function isUser(value: unknown): value is User {
 }
 
 /**
- * Busca a lista de usuários no JSONPlaceholder.
- * Lança erro em falha de rede, status HTTP fora da faixa 2xx ou resposta em formato inesperado.
+ * Fetches the list of users from JSONPlaceholder.
+ * Throws on network failure, non-2xx HTTP status or an unexpected response format.
  */
 export async function fetchUsers(signal?: AbortSignal): Promise<User[]> {
   const response = await fetch(USERS_URL, { method: 'GET', signal })
 
   if (!response.ok) {
-    throw new Error(`Falha ao carregar usuários (HTTP ${response.status})`)
+    throw new Error(`Failed to load users (HTTP ${response.status})`)
   }
 
   const data: unknown = await response.json()
 
   if (!Array.isArray(data) || !data.every(isUser)) {
-    throw new Error('A API devolveu os usuários em um formato inesperado')
+    throw new Error('The API returned users in an unexpected format')
   }
 
   return data

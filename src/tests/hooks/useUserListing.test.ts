@@ -5,7 +5,7 @@ import { useUserListing } from '../../hooks/useUserListing'
 const names = (users: { name: string }[]) => users.map((u) => u.name)
 
 describe('useUserListing', () => {
-  it('começa sem busca nem filtros, em ordem A–Z', () => {
+  it('starts without search or filters, in A–Z order', () => {
     const { result } = renderHook(() => useUserListing(usersFixture))
 
     expect(result.current.searchTerm).toBe('')
@@ -15,7 +15,7 @@ describe('useUserListing', () => {
     expect(result.current.visibleUsers).toHaveLength(usersFixture.length)
   })
 
-  it('monta as opções de cidade e empresa com a opção "todas" primeiro', () => {
+  it('builds city and company options with the "all" option first', () => {
     const { result } = renderHook(() => useUserListing(usersFixture))
 
     expect(result.current.cityOptions[0]).toEqual({ value: '', label: 'Todas as cidades' })
@@ -24,7 +24,7 @@ describe('useUserListing', () => {
     expect(result.current.companyOptions).toHaveLength(9)
   })
 
-  it('aplica busca, filtros e ordenação, nessa ordem', () => {
+  it('applies search, filters and sorting, in this order', () => {
     const { result } = renderHook(() => useUserListing(usersFixture))
 
     act(() => result.current.setCity('São Paulo'))

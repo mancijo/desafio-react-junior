@@ -4,62 +4,62 @@ import { searchUsersByName } from '../../utils/search'
 const names = (term: string) => searchUsersByName(usersFixture, term).map((u) => u.name)
 
 describe('searchUsersByName', () => {
-  it('ignora maiúsculas/minúsculas: "leanne" encontra "Leanne Graham"', () => {
+  it('ignores case: "leanne" finds "Leanne Graham"', () => {
     expect(names('leanne')).toContain('Leanne Graham')
     expect(names('LEANNE')).toContain('Leanne Graham')
   })
 
-  it('ignora acentos: termos sem acento encontram nomes acentuados', () => {
+  it('ignores accents: unaccented terms find accented names', () => {
     expect(names('jose araujo')).toContain('José Araújo')
     expect(names('erica goncalves')).toContain('Érica Gonçalves')
   })
 
-  it('também encontra quando o termo tem acento e o nome não', () => {
+  it('also matches when the term has accents and the name does not', () => {
     expect(names('léanne')).toContain('Leanne Graham')
   })
 
-  it('busca aproximada: "Lenne Grahm" encontra "Leanne Graham"', () => {
+  it('fuzzy search: "Lenne Grahm" finds "Leanne Graham"', () => {
     expect(names('Lenne Grahm')).toContain('Leanne Graham')
   })
 
-  it('termo sem relação com nenhum nome ("xyz") não retorna ninguém', () => {
+  it('a term unrelated to any name ("xyz") returns no one', () => {
     expect(names('xyz')).toEqual([])
   })
 
-  it('campo vazio (ou só espaços) retorna todos os usuários', () => {
+  it('an empty field (or only spaces) returns all users', () => {
     expect(names('')).toHaveLength(usersFixture.length)
     expect(names('   ')).toHaveLength(usersFixture.length)
   })
 
-  it('considera apenas o nome: buscar o username "qwzk" não retorna ninguém', () => {
+  it('considers only the name: searching the username "qwzk" returns no one', () => {
     expect(names('qwzk')).toEqual([])
   })
 
-  it('encontra qualquer parte do nome, como o sobrenome ("graham")', () => {
+  it('finds any part of the name, such as the last name ("graham")', () => {
     expect(names('graham')).toEqual(['Leanne Graham'])
   })
 
-  it('termos de 1–2 letras filtram pelo trecho exato, sem tolerância', () => {
+  it('1–2 letter terms filter by exact substring, without tolerance', () => {
     expect(names('gr')).toEqual(['Leanne Graham'])
     expect(names('gx')).toEqual([])
   })
 
-  it('a partir de 3 letras, junta o trecho exato e as correspondências aproximadas', () => {
-    // "grahm" não é trecho exato de nenhum nome: só a busca aproximada encontra
+  it('from 3 letters on, combines exact substring and fuzzy matches', () => {
+    // "grahm" is not an exact substring of any name: only the fuzzy search finds it
     expect(names('grahm')).toContain('Leanne Graham')
-    // "lima" é trecho exato; o resultado não tem repetições
+    // "lima" is an exact substring; the result has no duplicates
     const lima = names('lima')
     expect(lima).toContain('Eduardo Lima')
     expect(new Set(lima).size).toBe(lima.length)
   })
 
-  it('um nome que contém o trecho continua na lista ao digitar mais letras', () => {
+  it('a name containing the substring stays in the list while typing more letters', () => {
     for (const term of ['gr', 'gra', 'grah', 'graha', 'graham']) {
       expect(names(term)).toContain('Leanne Graham')
     }
   })
 
-  it('não altera a ordem original dos usuários', () => {
+  it('does not change the original order of users', () => {
     const all = searchUsersByName(usersFixture, '')
     expect(all).toEqual(usersFixture)
   })

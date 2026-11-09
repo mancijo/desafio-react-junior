@@ -1,4 +1,4 @@
-/** Topo da página: sobretítulo, título principal (<h1>) e texto de apoio. */
+/** Page intro: eyebrow, main title (<h1>) and supporting text. */
 export function PageIntro() {
   return (
     <section aria-labelledby="page-title" className="max-w-3xl">

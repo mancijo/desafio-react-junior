@@ -1,7 +1,7 @@
 import type { User } from '../types/user'
 import { ptBRCollator } from './collator'
 
-/** Filtros da lista. String vazia significa "todas". */
+/** List filters. An empty string means "all". */
 export interface UserFilters {
   city: string
   company: string
@@ -13,17 +13,17 @@ function uniqueSorted(values: string[]): string[] {
   return [...new Set(values)].sort(ptBRCollator.compare)
 }
 
-/** Cidades presentes nos dados, sem repetições, em ordem alfabética pt-BR. */
+/** Cities found in the data, without duplicates, in pt-BR alphabetical order. */
 export function getCityOptions(users: User[]): string[] {
   return uniqueSorted(users.map((user) => user.address.city))
 }
 
-/** Empresas presentes nos dados, sem repetições, em ordem alfabética pt-BR. */
+/** Companies found in the data, without duplicates, in pt-BR alphabetical order. */
 export function getCompanyOptions(users: User[]): string[] {
   return uniqueSorted(users.map((user) => user.company.name))
 }
 
-/** Aplica os filtros (cidade e empresa combinados), preservando a ordem original. */
+/** Applies the filters (city and company combined), keeping the original order. */
 export function filterUsers(users: User[], filters: UserFilters): User[] {
   return users.filter(
     (user) =>

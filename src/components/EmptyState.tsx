@@ -3,7 +3,7 @@ interface EmptyStateProps {
   description?: string
 }
 
-/** Aviso exibido no lugar da lista quando não há usuários para mostrar. */
+/** Notice shown instead of the list when there are no users to display. */
 export function EmptyState({ title, description }: EmptyStateProps) {
   return (
     <div

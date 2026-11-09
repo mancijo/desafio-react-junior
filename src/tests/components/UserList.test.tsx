@@ -3,7 +3,7 @@ import { usersFixture } from '../fixtures/users'
 import { UserList } from '../../components/UserList'
 
 describe('UserList', () => {
-  it('exibe o nome e o email de cada usuário', () => {
+  it('shows the name and email of each user', () => {
     render(<UserList users={usersFixture} onSelect={() => {}} />)
 
     for (const user of usersFixture) {
@@ -13,13 +13,13 @@ describe('UserList', () => {
     }
   })
 
-  it('exibe um item para cada usuário (10 usuários → 10 itens)', () => {
+  it('shows one item per user (10 users → 10 items)', () => {
     render(<UserList users={usersFixture} onSelect={() => {}} />)
 
     expect(screen.getAllByRole('listitem')).toHaveLength(10)
   })
 
-  it('não exibe outros dados do usuário na lista', () => {
+  it('does not show other user data in the list', () => {
     render(<UserList users={usersFixture} onSelect={() => {}} />)
 
     expect(screen.queryByText(usersFixture[0].phone)).not.toBeInTheDocument()

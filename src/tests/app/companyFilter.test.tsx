@@ -22,8 +22,8 @@ const listedNames = () =>
     .getAllByRole('listitem')
     .map((item) => within(item).getByRole('button').querySelector('span')?.textContent)
 
-describe('App — filtro por empresa (US07)', () => {
-  it('lista as empresas dos dados, sem repetições, depois de "Todas as empresas"', async () => {
+describe('App — company filter (US07)', () => {
+  it('lists the companies from the data, without duplicates, after "Todas as empresas"', async () => {
     await renderLoaded()
     const options = optionsOf('Empresa')
 
@@ -32,7 +32,7 @@ describe('App — filtro por empresa (US07)', () => {
     expect(options.filter((o) => o === 'Café & Cia')).toHaveLength(1)
   })
 
-  it('ao escolher uma empresa, exibe apenas os usuários dela', async () => {
+  it('choosing a company shows only its users', async () => {
     const user = await renderLoaded()
 
     await user.selectOptions(screen.getByLabelText('Empresa'), 'Café & Cia')
@@ -41,7 +41,7 @@ describe('App — filtro por empresa (US07)', () => {
     expect(listedNames()).toEqual(expect.arrayContaining(['José Araújo', 'Ana Júlia Souza']))
   })
 
-  it('"Todas as empresas" remove o filtro', async () => {
+  it('"Todas as empresas" removes the filter', async () => {
     const user = await renderLoaded()
     const select = screen.getByLabelText('Empresa')
 
@@ -51,7 +51,7 @@ describe('App — filtro por empresa (US07)', () => {
     expect(screen.getAllByRole('listitem')).toHaveLength(usersFixture.length)
   })
 
-  it('funciona em conjunto com a busca e o filtro de cidade', async () => {
+  it('works together with the search and the city filter', async () => {
     const user = await renderLoaded()
 
     await user.selectOptions(screen.getByLabelText('Cidade'), 'São Paulo')
@@ -62,7 +62,7 @@ describe('App — filtro por empresa (US07)', () => {
     expect(screen.queryAllByRole('listitem')).toHaveLength(0)
   })
 
-  it('as listas de cidade e empresa são independentes: mostram sempre todas as opções', async () => {
+  it('city and company lists are independent: they always show all options', async () => {
     const user = await renderLoaded()
     const citiesBefore = optionsOf('Cidade')
     const companiesBefore = optionsOf('Empresa')

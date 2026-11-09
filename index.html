@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista de Usuários</title>
     <script>
-      // Aplica o tema antes de o React montar, para a página não piscar no modo errado.
-      // Mesma regra do hook useTheme: escolha salva em localStorage ou preferência do sistema.
+      // Applies the theme before React mounts, so the page does not flash in the wrong mode.
+      // Same rule as the useTheme hook: saved choice in localStorage or the system preference.
       ;(function () {
         try {
           var saved = localStorage.getItem('theme')

@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react'
 import App from '../../App'
 import { mockFetchHttpError, mockFetchNetworkError, mockFetchSuccess } from '../mocks/fetchMock'
 
-describe('App — erro (US03)', () => {
-  it('exibe o componente de erro quando a API responde com status de erro', async () => {
+describe('App — error (US03)', () => {
+  it('shows the error component when the API responds with an error status', async () => {
     mockFetchHttpError(500)
     render(<App />)
 
@@ -12,14 +12,14 @@ describe('App — erro (US03)', () => {
     )
   })
 
-  it('exibe o componente de erro quando há falha de rede', async () => {
+  it('shows the error component on a network failure', async () => {
     mockFetchNetworkError()
     render(<App />)
 
     expect(await screen.findByRole('alert')).toBeInTheDocument()
   })
 
-  it('não exibe a lista nem o spinner quando houve erro', async () => {
+  it('shows neither the list nor the spinner after an error', async () => {
     mockFetchHttpError(404)
     render(<App />)
 
@@ -29,9 +29,9 @@ describe('App — erro (US03)', () => {
   })
 })
 
-describe('App — resposta inesperada da API', () => {
-  it('exibe o componente de erro em vez de quebrar quando a API não devolve uma lista', async () => {
-    mockFetchSuccess({ erro: 'formato inesperado' })
+describe('App — unexpected API response', () => {
+  it('shows the error component instead of crashing when the API does not return a list', async () => {
+    mockFetchSuccess({ error: 'unexpected format' })
     render(<App />)
 
     expect(await screen.findByRole('alert')).toHaveTextContent(

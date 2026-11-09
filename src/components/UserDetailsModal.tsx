@@ -1,30 +1,25 @@
 import { useId, useRef } from 'react'
 import { useModalBehavior } from '../hooks/useModalBehavior'
+import { usersDataset } from '../datasets/users'
+import type { DetailItem } from '../types/dataset'
 import type { User } from '../types/user'
 
 interface UserDetailsModalProps {
   user: User
   onClose: () => void
+  /** Small heading above the title. */
+  eyebrow?: string
+  /** Fields to show; defaults to the five required by the challenge. */
+  details?: (user: User) => DetailItem[]
 }
 
-interface DetailItem {
-  label: string
-  value: string
-}
-
-/** The fields required by the challenge, in display order (labels are shown to the user in pt-BR). */
-function detailItems(user: User): DetailItem[] {
-  return [
-    { label: 'Nome completo', value: user.name },
-    { label: 'Email', value: user.email },
-    { label: 'Telefone', value: user.phone },
-    { label: 'Empresa', value: user.company.name },
-    { label: 'Cidade', value: user.address.city },
-  ]
-}
-
-/** Modal with the user's full name, email, phone, company and city. */
-export function UserDetailsModal({ user, onClose }: UserDetailsModalProps) {
+/** Modal with the item's details (for users: full name, email, phone, company and city). */
+export function UserDetailsModal({
+  user,
+  onClose,
+  eyebrow = usersDataset.text.detailsEyebrow,
+  details = usersDataset.details,
+}: UserDetailsModalProps) {
   const titleId = useId()
   const dialogRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
@@ -51,7 +46,7 @@ export function UserDetailsModal({ user, onClose }: UserDetailsModalProps) {
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold tracking-widest text-primary-dark uppercase dark:text-primary">
-              Detalhes do usuário
+              {eyebrow}
             </p>
             <h2
               id={titleId}
@@ -82,7 +77,7 @@ export function UserDetailsModal({ user, onClose }: UserDetailsModalProps) {
         </div>
 
         <dl className="mt-6 flex flex-col divide-y divide-border-subtle rounded-card border border-border-subtle px-5 dark:bg-glass">
-          {detailItems(user).map((item) => (
+          {details(user).map((item) => (
             <div key={item.label} className="flex flex-col gap-0.5 py-3">
               <dt className="text-sm font-medium text-body dark:text-white/72">{item.label}</dt>
               <dd className="font-semibold break-words text-heading dark:text-white">

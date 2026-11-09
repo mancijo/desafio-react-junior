@@ -1,4 +1,6 @@
+import { usersDataset } from '../datasets/users'
 import type { UseUserListingResult } from '../hooks/useUserListing'
+import type { DatasetText } from '../types/dataset'
 import type { SortOrder } from '../utils/sort'
 import { SearchBar } from './SearchBar'
 import { SelectField } from './SelectField'
@@ -21,27 +23,37 @@ type ListingControlsProps = Pick<
   | 'setSortOrder'
   | 'cityOptions'
   | 'companyOptions'
->
+> & {
+  text?: Pick<
+    DatasetText,
+    'searchLabel' | 'searchPlaceholder' | 'cityFilterLabel' | 'companyFilterLabel' | 'sortLabel'
+  >
+}
 
-/** Name search, city and company filters and sorting, side by side on desktop. */
-export function ListingControls(props: ListingControlsProps) {
+/** Search, the two filters and sorting, side by side on desktop. */
+export function ListingControls({ text = usersDataset.text, ...props }: ListingControlsProps) {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <SearchBar value={props.searchTerm} onChange={props.setSearchTerm} />
+      <SearchBar
+        value={props.searchTerm}
+        onChange={props.setSearchTerm}
+        label={text.searchLabel}
+        placeholder={text.searchPlaceholder}
+      />
       <SelectField
-        label="Cidade"
+        label={text.cityFilterLabel}
         value={props.filters.city}
         options={props.cityOptions}
         onChange={props.setCity}
       />
       <SelectField
-        label="Empresa"
+        label={text.companyFilterLabel}
         value={props.filters.company}
         options={props.companyOptions}
         onChange={props.setCompany}
       />
       <SelectField
-        label="Ordenar por nome"
+        label={text.sortLabel}
         value={props.sortOrder}
         options={SORT_OPTIONS}
         onChange={(value) => props.setSortOrder(toSortOrder(value))}

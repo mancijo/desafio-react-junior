@@ -42,11 +42,15 @@ describe('App — keyboard and screen reader (US14)', () => {
     expect(screen.getByRole('combobox', { name: 'Ordenar por nome' })).toBeInTheDocument()
   })
 
-  it('Tab navigation goes through theme, search, filters, sorting and users, in this order', async () => {
+  it('Tab navigation goes through theme, data source, search, filters, sorting and users, in this order', async () => {
     const user = await renderLoaded()
 
     await user.tab()
     expect(screen.getByRole('button', { name: /Ativar modo/ })).toHaveFocus()
+    await user.tab()
+    expect(screen.getByRole('button', { name: 'Usuários' })).toHaveFocus()
+    await user.tab()
+    expect(screen.getByRole('button', { name: 'Tarefas' })).toHaveFocus()
     await user.tab()
     expect(screen.getByLabelText('Buscar por nome')).toHaveFocus()
     await user.tab()

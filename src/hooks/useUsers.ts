@@ -10,11 +10,15 @@ export interface UseUsersResult {
   error: Error | null
 }
 
+type LoadUsers = (signal?: AbortSignal) => Promise<User[]>
+
 /**
- * Loads users from the API and exposes data, loading and error states.
+ * Loads the list from the API and exposes data, loading and error states.
  * The request is aborted (AbortController) if the component unmounts before it finishes.
+ * `load` defaults to the users endpoint; pass another loader to use a different data source
+ * (remount the component, e.g. with a `key`, to switch sources).
  */
-export function useUsers(): UseUsersResult {
+export function useUsers(load: LoadUsers = fetchUsers): UseUsersResult {
   const [state, setState] = useState<UseUsersResult>({
     users: [],
     status: 'loading',
@@ -24,7 +28,7 @@ export function useUsers(): UseUsersResult {
   useEffect(() => {
     const controller = new AbortController()
 
-    fetchUsers(controller.signal)
+    load(controller.signal)
       .then((users) => setState({ users, status: 'success', error: null }))
       .catch((error: unknown) => {
         if (controller.signal.aborted) return
@@ -36,7 +40,7 @@ export function useUsers(): UseUsersResult {
       })
 
     return () => controller.abort()
-  }, [])
+  }, [load])
 
   return state
 }

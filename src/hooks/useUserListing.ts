@@ -25,6 +25,17 @@ export interface UseUserListingResult {
   visibleUsers: User[]
 }
 
+/** Labels of the "all" option of each filter (shown in pt-BR). */
+export interface ListingLabels {
+  cityFilterAll: string
+  companyFilterAll: string
+}
+
+const DEFAULT_LABELS: ListingLabels = {
+  cityFilterAll: 'Todas as cidades',
+  companyFilterAll: 'Todas as empresas',
+}
+
 function toOptions(allLabel: string, values: string[]): SelectOption[] {
   return [{ value: '', label: allLabel }, ...values.map((value) => ({ value, label: value }))]
 }
@@ -34,15 +45,21 @@ function toOptions(allLabel: string, values: string[]): SelectOption[] {
  * The visible list is computed as search → filters → sorting, so sorting by name
  * always prevails over search relevance.
  */
-export function useUserListing(users: User[]): UseUserListingResult {
+export function useUserListing(
+  users: User[],
+  labels: ListingLabels = DEFAULT_LABELS,
+): UseUserListingResult {
   const [searchTerm, setSearchTerm] = useState('')
   const [filters, setFilters] = useState<UserFilters>(NO_FILTERS)
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc')
 
-  const cityOptions = useMemo(() => toOptions('Todas as cidades', getCityOptions(users)), [users])
+  const cityOptions = useMemo(
+    () => toOptions(labels.cityFilterAll, getCityOptions(users)),
+    [users, labels.cityFilterAll],
+  )
   const companyOptions = useMemo(
-    () => toOptions('Todas as empresas', getCompanyOptions(users)),
-    [users],
+    () => toOptions(labels.companyFilterAll, getCompanyOptions(users)),
+    [users, labels.companyFilterAll],
   )
 
   const visibleUsers = useMemo(

@@ -6,4 +6,5 @@ Pontos não definidos no planejamento ou no backlog que surgiram durante o desen
 |---|----------|--------------------|---------|
 | 1 | US04 | Funções puras de busca, filtros e ordenação ficam em `src/utils/` (pasta a mais na estrutura por tipo) | A estrutura prevê `components`, `hooks`, `services` e `types`; nenhuma delas é adequada para funções puras, que precisam ficar isoladas e testáveis |
 | 3 | US05 | Quando a API não retorna nenhum usuário, a busca e os filtros ficam ocultos e só aparece "Nenhum usuário cadastrado." | Sem dados, os controles não teriam efeito |
+| 4 | US11 | Sem animações de entrada (~0,4 s) nos cards e no modal | Recomendação do guia, mas não é critério de aceitação; mantém a interface simples |
 | 2 | US03 | Card de erro em vermelho suave (paleta padrão do Tailwind) | O guia da CDT não define uma cor de erro |

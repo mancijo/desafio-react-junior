@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { EmptyState } from './components/EmptyState'
 import { ErrorMessage } from './components/ErrorMessage'
+import { Header } from './components/Header'
 import { LoadingSpinner } from './components/LoadingSpinner'
 import { SearchBar } from './components/SearchBar'
 import { SelectField } from './components/SelectField'
@@ -52,10 +53,25 @@ function App() {
   )
 
   return (
-    <div className="min-h-screen bg-white font-sans dark:bg-navy">
-      <main className="mx-auto max-w-content px-4 py-12">
-        <h1 className="text-3xl font-extrabold text-heading dark:text-white">Lista de Usuários</h1>
-        <div className="mt-8">
+    <>
+      <Header />
+      <main className="mx-auto max-w-content px-4 pt-[calc(62px+3rem)] pb-16 sm:pt-[calc(62px+4rem)]">
+        <section aria-labelledby="page-title" className="max-w-3xl">
+          <p className="text-xs font-semibold tracking-[0.2em] text-primary-dark uppercase dark:text-primary">
+            JSONPlaceholder
+          </p>
+          <h1
+            id="page-title"
+            className="mt-3 text-3xl leading-[1.08] font-extrabold text-heading uppercase sm:text-5xl dark:text-white"
+          >
+            Lista de Usuários
+          </h1>
+          <p className="mt-4 text-body dark:text-white/72">
+            Busque pelo nome, filtre por cidade ou empresa e clique em um usuário para ver os
+            detalhes.
+          </p>
+        </section>
+        <div className="mt-10">
           {status === 'loading' && <LoadingSpinner />}
           {status === 'error' && <ErrorMessage />}
           {status === 'success' && users.length === 0 && (
@@ -104,7 +120,7 @@ function App() {
       {selectedUser && (
         <UserDetailsModal user={selectedUser} onClose={() => setSelectedUser(null)} />
       )}
-    </div>
+    </>
   )
 }
 

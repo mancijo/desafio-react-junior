@@ -49,7 +49,7 @@ Uma história só está pronta quando:
 | US06 | Filtrar usuários por cidade | Busca e filtros | Should | UX04, 7.2 | US04 |
 | US07 | Filtrar usuários por empresa | Busca e filtros | Should | UX04, 7.2 | US04, US06 |
 | US08 | Ordenar usuários por nome | Busca e filtros | Should | UX04, 7.2 | US04, US06, US07 |
-| US09 | Ver os detalhes completos em um modal | Detalhes | Must | RF04, RF05 | US01 |
+| US09 | Ver os detalhes em um modal | Detalhes | Must | RF04, RF05 | US01 |
 | US10 | Usar o modal pelo teclado | Detalhes | Should | UX03 | US09 |
 | US11 | Interface com a identidade visual da CDT | Interface | Must | 7.3 | TS02, US01 |
 | US12 | Usar a aplicação no celular e no desktop | Interface | Should | UX01 | US11 |
@@ -282,19 +282,19 @@ Uma história só está pronta quando:
 
 ## Épico 3 — Detalhes
 
-### US09 — Ver os detalhes completos em um modal
+### US09 — Ver os detalhes em um modal
 
-**Como** visitante, **quero** clicar em um usuário e ver todos os seus dados em um modal, **para** conhecer o contato completo sem sair da lista.
+**Como** visitante, **quero** clicar em um usuário e ver seus dados principais em um modal, **para** conhecer o contato sem sair da lista.
 
 **Critérios de aceitação**
 
 1. **Quando** clico em um usuário da lista, **então** um modal é aberto com os dados desse usuário.
-2. O modal exibe todos os campos do mapeamento do planejamento, agrupados em Pessoal, Contato, Endereço e Empresa: nome completo, nome de usuário, email, telefone, website, rua, complemento, cidade, CEP, coordenadas, empresa, slogan e ramo de atuação.
-3. Os campos exigidos pelo desafio (nome completo, email, telefone, empresa e cidade) estão presentes.
+2. O modal exibe **apenas** nome completo, email, telefone, empresa e cidade, nesta ordem e sem agrupamento.
+3. Nenhum outro dado do usuário (nome de usuário, website, endereço, coordenadas, slogan, ramo de atuação) aparece no modal.
 4. **Quando** clico no botão de fechar, **então** o modal fecha.
 5. O modal tem `role="dialog"`, `aria-modal="true"` e é rotulado pelo nome do usuário (`aria-labelledby`); o botão de fechar tem rótulo acessível (ex.: "Fechar detalhes").
 6. **Quando** o modal abre, **então** os dados vêm do usuário já carregado na lista, sem nova requisição à API.
-7. Email e website são exibidos como texto (sem links).
+7. O email é exibido como texto (sem link).
 
 **Branch:** `feat/user-details-modal`
 

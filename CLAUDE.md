@@ -75,7 +75,7 @@ src/
 ## Regras de comportamento já decididas
 
 - Endpoint: `https://jsonplaceholder.typicode.com/users`.
-- Lista mostra apenas nome e email; o clique abre um **modal com os detalhes completos** (todos os campos da API, agrupados em Pessoal, Contato, Endereço e Empresa). O modal já nasce com botão de fechar (US09) e usa o usuário já carregado, sem nova requisição; email e website aparecem como texto, sem links. `Esc`, clique no fundo e foco preso vêm na US10.
+- Lista mostra apenas nome e email; o clique abre um **modal com apenas nome completo, email, telefone, empresa e cidade** (sem grupos, nenhum outro campo). O modal já nasce com botão de fechar (US09) e usa o usuário já carregado, sem nova requisição; o email aparece como texto, sem link. `Esc`, clique no fundo e foco preso vêm na US10.
 - Busca por nome em tempo real, ignorando maiúsculas/minúsculas e acentos, tolerante a erros de digitação (Fuse.js); termos sem relação com nenhum nome (ex.: `xyz`) não retornam resultados.
   - Considera **apenas `name`** e encontra qualquer parte do nome (inclusive o sobrenome).
   - Termos de 1–2 letras: trecho exato, sem tolerância. A partir de 3 letras: trecho exato **somado** às correspondências aproximadas do Fuse.js (um acerto exato nunca some ao digitar mais uma letra).

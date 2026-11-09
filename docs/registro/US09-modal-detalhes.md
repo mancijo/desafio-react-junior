@@ -38,3 +38,15 @@ Total da suíte: 83 testes passando. Lint e build OK.
 | Rótulos | Nome completo, Nome de usuário, Email, Telefone, Website, Rua, Complemento, Cidade, CEP, Coordenadas, Empresa, Slogan, Ramo de atuação |
 | Coordenadas | `<lat>, <lng>` |
 | Botão de fechar (`aria-label`) | Fechar detalhes |
+
+## Revisão posterior — apenas os campos exigidos
+
+A pedido do responsável, o modal passou a exibir **apenas** nome completo, email, telefone, empresa e cidade, em uma única lista e sem os grupos Pessoal, Contato, Endereço e Empresa. O componente `DetailGroup` foi removido, e o painel ficou mais estreito (`max-w-lg`).
+
+Testes reescritos em `src/tests/components/UserDetailsModal.test.tsx`:
+
+- exibe só os 5 rótulos, nesta ordem;
+- exibe os valores dos 5 campos;
+- não exibe nenhum outro dado (username, website, rua, complemento, CEP, slogan, ramo de atuação).
+
+Os dois primeiros falharam antes da mudança e passaram depois.

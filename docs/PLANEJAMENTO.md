@@ -72,29 +72,23 @@ src/
 | RF01 | Listar usuários a partir do endpoint `https://jsonplaceholder.typicode.com/users` | Definido |
 | RF02 | Exibir **nome** e **email** de cada usuário na lista | Definido |
 | RF03 | Campo de busca para filtrar usuários **pelo nome** | Definido |
-| RF04 | Ao clicar em um usuário, exibir seus **detalhes completos** em um **modal** | Definido |
-| RF05 | O modal exibe todos os dados do usuário retornados pela API (ver mapeamento abaixo), incluindo os exigidos pelo desafio: nome completo, email, telefone, empresa e cidade | Definido |
+| RF04 | Ao clicar em um usuário, exibir seus **detalhes** em um **modal** | Definido |
+| RF05 | O modal exibe **apenas** os campos exigidos pelo desafio: nome completo, email, telefone, empresa e cidade (ver mapeamento abaixo) | Definido |
 | RF06 | Estados visuais de **carregando** (spinner com Tailwind `animate-spin`) e **erro** (componente próprio estilizado com Tailwind, controlado pelo hook de requisição) | Definido |
 
 ### Mapeamento dos campos da API (referência)
 
-Campos exibidos no modal de detalhes (★ = exigido pelo desafio):
+Campos exibidos no modal de detalhes, nesta ordem e sem agrupamento:
 
-| Grupo    | Exibição            | Campo na API              |
-|----------|---------------------|---------------------------|
-| Pessoal  | Nome completo ★     | `name`                    |
-| Pessoal  | Nome de usuário     | `username`                |
-| Contato  | Email ★             | `email`                   |
-| Contato  | Telefone ★          | `phone`                   |
-| Contato  | Website             | `website`                 |
-| Endereço | Rua                 | `address.street`          |
-| Endereço | Complemento         | `address.suite`           |
-| Endereço | Cidade ★            | `address.city`            |
-| Endereço | CEP                 | `address.zipcode`         |
-| Endereço | Coordenadas         | `address.geo.lat`, `address.geo.lng` |
-| Empresa  | Empresa ★           | `company.name`            |
-| Empresa  | Slogan              | `company.catchPhrase`     |
-| Empresa  | Ramo de atuação     | `company.bs`              |
+| Exibição      | Campo na API     |
+|---------------|------------------|
+| Nome completo | `name`           |
+| Email         | `email`          |
+| Telefone      | `phone`          |
+| Empresa       | `company.name`   |
+| Cidade        | `address.city`   |
+
+Os demais campos da API (`username`, `website`, endereço completo, coordenadas, slogan e ramo de atuação) continuam tipados em `src/types/user.ts`, mas não são exibidos.
 
 Na lista, cada usuário exibe apenas nome (`name`) e email (`email`).
 
@@ -296,6 +290,10 @@ Nenhuma no momento.
 | 09/11/2026 | TS02: Tailwind v4 com os tokens em `tailwind.config.ts` (carregado via `@config`) e fonte Plus Jakarta Sans servida pelo projeto (Fontsource), sem depender do Google Fonts |
 | 09/11/2026 | Propostas do backlog confirmadas: termo buscado na mensagem de lista vazia; mensagem quando a API não retorna usuários; modal usa o usuário já carregado (sem nova requisição); clique fora fecha o modal; tema aplicado antes de o React montar (sem piscar); deploy automático via GitHub Actions |
 | 09/11/2026 | Propostas do backlog descartadas: email e website como links no modal; anúncio da contagem de resultados com `aria-live` |
+| 09/11/2026 | RF05 revisto: o modal exibe **apenas** nome completo, email, telefone, empresa e cidade, sem grupos (substitui a decisão de exibir todos os campos) |
+| 09/11/2026 | Código e comentários em **inglês** (nomes, comentários, descrições dos testes, mensagens internas); a interface continua em **pt-BR** |
+| 09/11/2026 | Testes reunidos em `src/tests/` (integração em `app/`, unitários por tipo, `mocks/` e `fixtures/`); `tsconfig` único e Prettier configurado no `package.json` |
+| 09/11/2026 | Mocks de API existem **só nos testes**; a aplicação sempre consome a API real |
 | 09/11/2026 | Nome do repositório: `desafio-react-junior` (define o `base` do Vite e o endereço do GitHub Pages) |
 | 09/11/2026 | Sem estimativas, sprints ou prazo: a implementação é feita com IA, história por história, com revisão do responsável ao fim de cada uma |
 | 09/11/2026 | Textos da interface: definidos pelo Claude Code em cada história, em pt-BR, listados no registro da etapa em `docs/` e revisados pelo responsável na entrega; valores da API mantidos no original |

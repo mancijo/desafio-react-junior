@@ -1,52 +1,29 @@
 import { useId, useRef } from 'react'
 import { useModalBehavior } from '../hooks/useModalBehavior'
 import type { User } from '../types/user'
-import { DetailGroup, type DetailItem } from './DetailGroup'
 
 interface UserDetailsModalProps {
   user: User
   onClose: () => void
 }
 
-function detailGroups(user: User): { title: string; items: DetailItem[] }[] {
+interface DetailItem {
+  label: string
+  value: string
+}
+
+/** The fields required by the challenge, in display order (labels are shown to the user in pt-BR). */
+function detailItems(user: User): DetailItem[] {
   return [
-    {
-      title: 'Pessoal',
-      items: [
-        { label: 'Nome completo', value: user.name },
-        { label: 'Nome de usuário', value: user.username },
-      ],
-    },
-    {
-      title: 'Contato',
-      items: [
-        { label: 'Email', value: user.email },
-        { label: 'Telefone', value: user.phone },
-        { label: 'Website', value: user.website },
-      ],
-    },
-    {
-      title: 'Endereço',
-      items: [
-        { label: 'Rua', value: user.address.street },
-        { label: 'Complemento', value: user.address.suite },
-        { label: 'Cidade', value: user.address.city },
-        { label: 'CEP', value: user.address.zipcode },
-        { label: 'Coordenadas', value: `${user.address.geo.lat}, ${user.address.geo.lng}` },
-      ],
-    },
-    {
-      title: 'Empresa',
-      items: [
-        { label: 'Empresa', value: user.company.name },
-        { label: 'Slogan', value: user.company.catchPhrase },
-        { label: 'Ramo de atuação', value: user.company.bs },
-      ],
-    },
+    { label: 'Nome completo', value: user.name },
+    { label: 'Email', value: user.email },
+    { label: 'Telefone', value: user.phone },
+    { label: 'Empresa', value: user.company.name },
+    { label: 'Cidade', value: user.address.city },
   ]
 }
 
-/** Modal com todos os dados do usuário, agrupados em Pessoal, Contato, Endereço e Empresa. */
+/** Modal with the user's full name, email, phone, company and city. */
 export function UserDetailsModal({ user, onClose }: UserDetailsModalProps) {
   const titleId = useId()
   const dialogRef = useRef<HTMLDivElement>(null)
@@ -69,7 +46,7 @@ export function UserDetailsModal({ user, onClose }: UserDetailsModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative flex max-h-[90vh] outline-none w-full max-w-3xl flex-col overflow-y-auto rounded-card-lg border border-border-subtle bg-white p-6 shadow-elevated sm:p-8 dark:bg-navy"
+        className="relative flex max-h-[90vh] w-full max-w-lg flex-col overflow-y-auto rounded-card-lg border border-border-subtle bg-white p-6 shadow-elevated outline-none sm:p-8 dark:bg-navy"
       >
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -104,11 +81,16 @@ export function UserDetailsModal({ user, onClose }: UserDetailsModalProps) {
           </button>
         </div>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {detailGroups(user).map((group) => (
-            <DetailGroup key={group.title} title={group.title} items={group.items} />
+        <dl className="mt-6 flex flex-col divide-y divide-border-subtle rounded-card border border-border-subtle px-5 dark:bg-glass">
+          {detailItems(user).map((item) => (
+            <div key={item.label} className="flex flex-col gap-0.5 py-3">
+              <dt className="text-sm font-medium text-body dark:text-white/72">{item.label}</dt>
+              <dd className="font-semibold break-words text-heading dark:text-white">
+                {item.value}
+              </dd>
+            </div>
           ))}
-        </div>
+        </dl>
       </div>
     </div>
   )

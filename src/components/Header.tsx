@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react'
 
 interface HeaderProps {
-  /** Ações à direita (ex.: alternância de tema). */
+  /** Actions on the right (e.g. theme toggle). */
   actions?: ReactNode
 }
 
-/** Header fixo com fundo marinho translúcido, igual nos modos claro e escuro. */
+/** Fixed header with a translucent navy background, the same in light and dark modes. */
 export function Header({ actions }: HeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-40 h-header border-b border-border-subtle bg-navy-header backdrop-blur-header">

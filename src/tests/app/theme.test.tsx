@@ -12,22 +12,22 @@ function renderApp() {
   return render(<App />)
 }
 
-describe('App — modo claro e escuro (US13)', () => {
-  it('na primeira visita, segue o sistema: preferência escura → modo escuro', () => {
+describe('App — light and dark mode (US13)', () => {
+  it('on the first visit, follows the system: dark preference → dark mode', () => {
     mockMatchMedia(true)
     renderApp()
 
     expect(isDark()).toBe(true)
   })
 
-  it('na primeira visita, segue o sistema: preferência clara → modo claro', () => {
+  it('on the first visit, follows the system: light preference → light mode', () => {
     mockMatchMedia(false)
     renderApp()
 
     expect(isDark()).toBe(false)
   })
 
-  it('o botão alterna entre claro e escuro', async () => {
+  it('the button toggles between light and dark', async () => {
     const user = userEvent.setup()
     renderApp()
 
@@ -38,14 +38,14 @@ describe('App — modo claro e escuro (US13)', () => {
     expect(isDark()).toBe(false)
   })
 
-  it('o rótulo do botão indica a ação', async () => {
+  it('the button label describes the action', async () => {
     mockMatchMedia(true)
     renderApp()
 
     expect(screen.getByRole('button', { name: 'Ativar modo claro' })).toBeInTheDocument()
   })
 
-  it('a escolha fica salva e prevalece sobre o sistema na próxima visita', async () => {
+  it('the choice is saved and overrides the system on the next visit', async () => {
     const user = userEvent.setup()
     mockMatchMedia(false)
     const { unmount } = renderApp()
@@ -54,13 +54,13 @@ describe('App — modo claro e escuro (US13)', () => {
     unmount()
     document.documentElement.classList.remove('dark')
 
-    // nova visita, com o sistema ainda em modo claro
+    // new visit, with the system still in light mode
     renderApp()
 
     expect(isDark()).toBe(true)
   })
 
-  it('sem escolha salva, acompanha a mudança do sistema com a página aberta', () => {
+  it('without a saved choice, follows system changes while the page is open', () => {
     const system = mockMatchMedia(false)
     renderApp()
 
@@ -71,7 +71,7 @@ describe('App — modo claro e escuro (US13)', () => {
     expect(isDark()).toBe(false)
   })
 
-  it('com escolha salva, ignora a mudança do sistema', async () => {
+  it('with a saved choice, ignores system changes', async () => {
     const user = userEvent.setup()
     const system = mockMatchMedia(false)
     renderApp()
@@ -82,12 +82,12 @@ describe('App — modo claro e escuro (US13)', () => {
     expect(isDark()).toBe(true)
   })
 
-  it('sem localStorage disponível, segue o sistema e o botão continua funcionando', async () => {
+  it('without localStorage, follows the system and the button still works', async () => {
     vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
-      throw new Error('indisponível')
+      throw new Error('unavailable')
     })
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
-      throw new Error('indisponível')
+      throw new Error('unavailable')
     })
     const user = userEvent.setup()
     mockMatchMedia(true)

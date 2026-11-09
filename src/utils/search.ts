@@ -2,22 +2,22 @@ import Fuse from 'fuse.js'
 import type { User } from '../types/user'
 import { normalizeText } from './text'
 
-/** A partir deste tamanho, o termo também usa a busca aproximada. */
+/** From this length on, the term also uses fuzzy search. */
 const FUZZY_MIN_LENGTH = 3
 
 /**
- * Tolerância da busca aproximada (0 = só exato, 1 = qualquer coisa).
- * Rígida de propósito: o trecho exato sempre entra no resultado, então o Fuse.js
- * só precisa cobrir pequenos erros de digitação.
+ * Fuzzy search tolerance (0 = exact only, 1 = anything).
+ * Strict on purpose: exact substrings are always included, so Fuse.js
+ * only needs to cover small typos.
  */
 const FUZZY_THRESHOLD = 0.3
 
 /**
- * Filtra usuários pelo nome (`name`), ignorando maiúsculas/minúsculas e acentos.
- * - Termo vazio: todos os usuários.
- * - 1–2 letras: só nomes que contêm o trecho exato.
- * - 3+ letras: nomes com o trecho exato **mais** as correspondências aproximadas do Fuse.js.
- * A ordem original dos usuários é preservada (a ordenação é aplicada depois).
+ * Filters users by name (`name`), ignoring case and accents.
+ * - Empty term: all users.
+ * - 1–2 letters: only names containing the exact substring.
+ * - 3+ letters: names with the exact substring **plus** Fuse.js fuzzy matches.
+ * The original order of users is kept (sorting is applied afterwards).
  */
 export function searchUsersByName(users: User[], term: string): User[] {
   const query = normalizeText(term)

@@ -5,7 +5,7 @@ interface UserCardProps {
   onSelect: (user: User) => void
 }
 
-/** Card com nome e email; o clique abre os detalhes do usuário. */
+/** Card with name and email; clicking it opens the user details. */
 export function UserCard({ user, onSelect }: UserCardProps) {
   return (
     <button

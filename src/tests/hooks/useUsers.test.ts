@@ -4,7 +4,7 @@ import { usersFixture } from '../fixtures/users'
 import { useUsers } from '../../hooks/useUsers'
 
 describe('useUsers', () => {
-  it('começa carregando e expõe os usuários quando a requisição termina', async () => {
+  it('starts loading and exposes the users when the request finishes', async () => {
     mockFetchSuccess(usersFixture)
 
     const { result } = renderHook(() => useUsers())
@@ -15,7 +15,7 @@ describe('useUsers', () => {
     expect(result.current.error).toBeNull()
   })
 
-  it('expõe o erro quando a requisição falha', async () => {
+  it('exposes the error when the request fails', async () => {
     mockFetchHttpError(503)
 
     const { result } = renderHook(() => useUsers())
@@ -25,7 +25,7 @@ describe('useUsers', () => {
     expect(result.current.error).toBeInstanceOf(Error)
   })
 
-  it('cancela a requisição ao desmontar antes de ela terminar', () => {
+  it('aborts the request when unmounted before it finishes', () => {
     const pending = mockFetchPending()
 
     const { unmount } = renderHook(() => useUsers())

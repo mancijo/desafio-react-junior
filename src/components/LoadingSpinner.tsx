@@ -1,4 +1,4 @@
-/** Indicador de carregamento: spinner ciano com texto anunciado a leitores de tela. */
+/** Loading indicator: cyan spinner with text announced to screen readers. */
 export function LoadingSpinner() {
   return (
     <div role="status" className="flex flex-col items-center gap-4 py-16">

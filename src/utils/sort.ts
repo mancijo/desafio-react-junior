@@ -3,7 +3,7 @@ import { ptBRCollator } from './collator'
 
 export type SortOrder = 'asc' | 'desc'
 
-/** Títulos de tratamento ignorados na ordenação ("Mrs. Dennis" é ordenado como "Dennis"). */
+/** Honorific titles ignored when sorting ("Mrs. Dennis" is sorted as "Dennis"). */
 const TITLE_PREFIX = /^(mrs|mr|ms|miss|dr)\.?\s+/i
 
 function sortKey(name: string): string {
@@ -11,8 +11,8 @@ function sortKey(name: string): string {
 }
 
 /**
- * Ordena por nome (A–Z ou Z–A) em português, ignorando títulos de tratamento.
- * Devolve uma nova lista; o nome exibido não muda.
+ * Sorts by name (A–Z or Z–A) using Portuguese rules, ignoring honorific titles.
+ * Returns a new list; the displayed name does not change.
  */
 export function sortUsersByName(users: User[], order: SortOrder): User[] {
   const direction = order === 'asc' ? 1 : -1

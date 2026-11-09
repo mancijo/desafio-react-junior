@@ -1,2 +1,2 @@
-/** Comparação de textos em português (trata acentos como a letra base: "É" junto de "E"). */
+/** Portuguese text comparison (accents are treated as the base letter: "É" next to "E"). */
 export const ptBRCollator = new Intl.Collator('pt-BR', { sensitivity: 'base' })

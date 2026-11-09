@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 export type Theme = 'light' | 'dark'
 
-/** Chave da escolha salva. O script inline do index.html usa a mesma chave. */
+/** Storage key of the saved choice. The inline script in index.html uses the same key. */
 export const THEME_STORAGE_KEY = 'theme'
 const DARK_QUERY = '(prefers-color-scheme: dark)'
 
@@ -19,7 +19,7 @@ function saveTheme(theme: Theme): void {
   try {
     localStorage.setItem(THEME_STORAGE_KEY, theme)
   } catch {
-    // Sem localStorage (modo privado, bloqueio): a escolha vale só nesta visita.
+    // No localStorage (private mode, blocked): the choice only lasts for this visit.
   }
 }
 
@@ -31,7 +31,7 @@ function systemTheme(): Theme {
 
 interface ThemeState {
   theme: Theme
-  /** O visitante já escolheu um modo pelo botão (nesta ou em visitas anteriores). */
+  /** The visitor already picked a mode with the button (in this or a previous visit). */
   hasChoice: boolean
 }
 
@@ -41,10 +41,10 @@ function initialState(): ThemeState {
 }
 
 /**
- * Modo claro/escuro:
- * - sem escolha salva, segue `prefers-color-scheme` (inclusive se mudar com a página aberta);
- * - o botão alterna e salva a escolha em `localStorage`, que passa a prevalecer;
- * - aplica a classe `dark` no `<html>` (Tailwind `darkMode: 'class'`).
+ * Light/dark mode:
+ * - without a saved choice, follows `prefers-color-scheme` (including changes while the page is open);
+ * - the button toggles and saves the choice in `localStorage`, which then prevails;
+ * - applies the `dark` class to `<html>` (Tailwind `darkMode: 'class'`).
  */
 export function useTheme(): { theme: Theme; toggleTheme: () => void } {
   const [state, setState] = useState<ThemeState>(initialState)

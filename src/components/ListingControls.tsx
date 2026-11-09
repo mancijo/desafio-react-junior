@@ -23,7 +23,7 @@ type ListingControlsProps = Pick<
   | 'companyOptions'
 >
 
-/** Busca por nome, filtros de cidade e empresa e ordenação, lado a lado no desktop. */
+/** Name search, city and company filters and sorting, side by side on desktop. */
 export function ListingControls(props: ListingControlsProps) {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

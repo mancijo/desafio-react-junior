@@ -1,13 +1,13 @@
 type Listener = (event: MediaQueryListEvent) => void
 
 export interface MatchMediaController {
-  /** Simula a troca da preferência do sistema com a página aberta. */
+  /** Simulates a change in the system preference while the page is open. */
   change: (matches: boolean) => void
 }
 
 /**
- * Substitui window.matchMedia (ausente no jsdom) por uma versão controlável.
- * `matches` indica se o sistema prefere o modo escuro.
+ * Replaces window.matchMedia (missing in jsdom) with a controllable version.
+ * `matches` tells whether the system prefers dark mode.
  */
 export function mockMatchMedia(matches: boolean): MatchMediaController {
   let current = matches

@@ -5,7 +5,7 @@ interface SearchBarProps {
   onChange: (value: string) => void
 }
 
-/** Campo de busca por nome, com rótulo visível. */
+/** Name search field with a visible label. */
 export function SearchBar({ value, onChange }: SearchBarProps) {
   const id = useId()
 

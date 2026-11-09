@@ -12,8 +12,8 @@ async function renderLoaded() {
   return user
 }
 
-describe('App — teclado e leitor de tela (US14)', () => {
-  it('cada usuário é um botão focável que abre os detalhes com Enter', async () => {
+describe('App — keyboard and screen reader (US14)', () => {
+  it('each user is a focusable button that opens the details with Enter', async () => {
     const user = await renderLoaded()
     const card = screen.getByRole('button', { name: /Leanne Graham/ })
 
@@ -24,7 +24,7 @@ describe('App — teclado e leitor de tela (US14)', () => {
     expect(screen.getByRole('dialog', { name: 'Leanne Graham' })).toBeInTheDocument()
   })
 
-  it('cada usuário também abre os detalhes com Espaço', async () => {
+  it('each user also opens the details with Space', async () => {
     const user = await renderLoaded()
 
     screen.getByRole('button', { name: /Ervin Howell/ }).focus()
@@ -33,7 +33,7 @@ describe('App — teclado e leitor de tela (US14)', () => {
     expect(screen.getByRole('dialog', { name: 'Ervin Howell' })).toBeInTheDocument()
   })
 
-  it('busca, filtros e ordenação têm rótulos', async () => {
+  it('search, filters and sorting have labels', async () => {
     await renderLoaded()
 
     expect(screen.getByRole('searchbox', { name: 'Buscar por nome' })).toBeInTheDocument()
@@ -42,7 +42,7 @@ describe('App — teclado e leitor de tela (US14)', () => {
     expect(screen.getByRole('combobox', { name: 'Ordenar por nome' })).toBeInTheDocument()
   })
 
-  it('a navegação por Tab percorre tema, busca, filtros, ordenação e os usuários, nessa ordem', async () => {
+  it('Tab navigation goes through theme, search, filters, sorting and users, in this order', async () => {
     const user = await renderLoaded()
 
     await user.tab()
@@ -59,7 +59,7 @@ describe('App — teclado e leitor de tela (US14)', () => {
     expect(screen.getByRole('button', { name: /Ana Júlia Souza/ })).toHaveFocus()
   })
 
-  it('os cards têm indicador de foco visível', async () => {
+  it('cards have a visible focus indicator', async () => {
     await renderLoaded()
 
     const card = screen.getByRole('button', { name: /Leanne Graham/ })

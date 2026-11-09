@@ -6,7 +6,7 @@ interface UserListProps {
   onSelect: (user: User) => void
 }
 
-/** Lista de usuários em cards (nome e email). */
+/** List of users as cards (name and email). */
 export function UserList({ users, onSelect }: UserListProps) {
   return (
     <ul aria-label="Usuários" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

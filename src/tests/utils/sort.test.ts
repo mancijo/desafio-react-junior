@@ -15,31 +15,31 @@ const ascending = [
 ]
 
 describe('sortUsersByName', () => {
-  it('A–Z: ordem alfabética crescente pelo nome', () => {
+  it('A–Z: ascending alphabetical order by name', () => {
     expect(sortUsersByName(usersFixture, 'asc').map((u) => u.name)).toEqual(ascending)
   })
 
-  it('Z–A: ordem decrescente', () => {
+  it('Z–A: descending order', () => {
     expect(sortUsersByName(usersFixture, 'desc').map((u) => u.name)).toEqual(
       [...ascending].reverse(),
     )
   })
 
-  it('respeita acentos do português: "Érica" fica entre "Eduardo" e "Ervin", não depois do Z', () => {
+  it('respects Portuguese accents: "Érica" sits between "Eduardo" and "Ervin", not after Z', () => {
     const names = sortUsersByName(usersFixture, 'asc').map((u) => u.name)
 
     expect(names.indexOf('Eduardo Lima')).toBeLessThan(names.indexOf('Érica Gonçalves'))
     expect(names.indexOf('Érica Gonçalves')).toBeLessThan(names.indexOf('Ervin Howell'))
   })
 
-  it('ignora títulos só para ordenar: "Mrs. Dennis Schulist" fica na letra D e mantém o nome completo', () => {
+  it('ignores titles only when sorting: "Mrs. Dennis Schulist" goes under D and keeps the full name', () => {
     const names = sortUsersByName(usersFixture, 'asc').map((u) => u.name)
 
     expect(names.indexOf('Mrs. Dennis Schulist')).toBe(names.indexOf('Clementine Bauch') + 1)
     expect(names).toContain('Mrs. Dennis Schulist')
   })
 
-  it('ignora os títulos Mr., Mrs., Ms., Miss e Dr.', () => {
+  it('ignores the titles Mr., Mrs., Ms., Miss and Dr.', () => {
     const titled = ['Dr. Zeca', 'Miss Bia', 'Mr. Caio', 'Ms. Ana', 'Mrs. Davi'].map((name, id) => ({
       ...usersFixture[0],
       id,
@@ -55,7 +55,7 @@ describe('sortUsersByName', () => {
     ])
   })
 
-  it('não altera a lista original', () => {
+  it('does not change the original list', () => {
     const copy = [...usersFixture]
     sortUsersByName(usersFixture, 'desc')
 

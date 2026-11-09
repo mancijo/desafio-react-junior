@@ -2,13 +2,13 @@ import { render, screen } from '@testing-library/react'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
 
 describe('LoadingSpinner', () => {
-  it('tem texto acessível "Carregando usuários" com role="status"', () => {
+  it('has accessible text "Carregando usuários" with role="status"', () => {
     render(<LoadingSpinner />)
 
     expect(screen.getByRole('status')).toHaveTextContent('Carregando usuários')
   })
 
-  it('exibe um spinner animado com animate-spin em ciano', () => {
+  it('shows a cyan spinner animated with animate-spin', () => {
     const { container } = render(<LoadingSpinner />)
 
     const spinner = container.querySelector('.animate-spin')

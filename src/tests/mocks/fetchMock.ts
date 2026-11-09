@@ -8,17 +8,17 @@ function install(implementation: typeof fetch): FetchMock {
   return mock
 }
 
-/** `fetch` que responde 200 com o JSON informado. */
+/** `fetch` that responds 200 with the given JSON. */
 export function mockFetchSuccess(data: unknown): FetchMock {
   return install(async () => new Response(JSON.stringify(data), { status: 200 }))
 }
 
-/** `fetch` que responde com um status HTTP de erro. */
+/** `fetch` that responds with an HTTP error status. */
 export function mockFetchHttpError(status = 500): FetchMock {
-  return install(async () => new Response('erro', { status }))
+  return install(async () => new Response('error', { status }))
 }
 
-/** `fetch` que falha por erro de rede. */
+/** `fetch` that fails with a network error. */
 export function mockFetchNetworkError(): FetchMock {
   return install(async () => {
     throw new TypeError('Failed to fetch')
@@ -26,8 +26,8 @@ export function mockFetchNetworkError(): FetchMock {
 }
 
 /**
- * `fetch` que só termina quando `resolve` é chamado.
- * Respeita o AbortSignal: rejeita com AbortError se a requisição for cancelada.
+ * `fetch` that only finishes when `resolve` is called.
+ * Honors the AbortSignal: rejects with AbortError if the request is aborted.
  */
 export function mockFetchPending(): { fetch: FetchMock; resolve: (data: unknown) => void } {
   let resolveResponse: (response: Response) => void = () => {}

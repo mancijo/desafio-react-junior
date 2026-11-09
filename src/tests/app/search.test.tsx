@@ -12,14 +12,14 @@ async function renderLoaded() {
   return user
 }
 
-describe('App — busca por nome (US04)', () => {
-  it('tem um campo de busca rotulado', async () => {
+describe('App — name search (US04)', () => {
+  it('has a labelled search field', async () => {
     await renderLoaded()
 
     expect(screen.getByLabelText('Buscar por nome')).toBeInTheDocument()
   })
 
-  it('filtra a lista a cada tecla digitada (tempo real)', async () => {
+  it('filters the list on every keystroke (real time)', async () => {
     const user = await renderLoaded()
     const input = screen.getByLabelText('Buscar por nome')
 
@@ -32,7 +32,7 @@ describe('App — busca por nome (US04)', () => {
     expect(screen.getByText('Leanne Graham')).toBeInTheDocument()
   })
 
-  it('volta a exibir todos os usuários quando o campo é esvaziado', async () => {
+  it('shows all users again when the field is cleared', async () => {
     const user = await renderLoaded()
     const input = screen.getByLabelText('Buscar por nome')
 

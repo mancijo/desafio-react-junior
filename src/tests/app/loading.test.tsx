@@ -4,15 +4,15 @@ import App from '../../App'
 import { mockFetchHttpError, mockFetchPending } from '../mocks/fetchMock'
 import { usersFixture } from '../fixtures/users'
 
-describe('App — carregamento (US02)', () => {
-  it('exibe o spinner enquanto a requisição não terminou', () => {
+describe('App — loading (US02)', () => {
+  it('shows the spinner while the request has not finished', () => {
     mockFetchPending()
     render(<App />)
 
     expect(screen.getByRole('status')).toHaveTextContent('Carregando usuários')
   })
 
-  it('esconde o spinner quando a requisição termina com sucesso', async () => {
+  it('hides the spinner when the request succeeds', async () => {
     const pending = mockFetchPending()
     render(<App />)
 
@@ -22,7 +22,7 @@ describe('App — carregamento (US02)', () => {
     expect(screen.queryByText('Carregando usuários')).not.toBeInTheDocument()
   })
 
-  it('esconde o spinner quando a requisição termina com erro', async () => {
+  it('hides the spinner when the request fails', async () => {
     mockFetchHttpError(500)
     render(<App />)
 

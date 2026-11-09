@@ -3,8 +3,8 @@ import { cleanup } from '@testing-library/react'
 import { afterEach, vi } from 'vitest'
 import { mockMatchMedia } from './mocks/matchMedia'
 
-// O jsdom não implementa window.matchMedia (usado pela preferência de tema).
-// Padrão: sistema em modo claro. Os testes podem trocar com mockMatchMedia().
+// jsdom does not implement window.matchMedia (used by the theme preference).
+// Default: system in light mode. Tests can change it with mockMatchMedia().
 mockMatchMedia(false)
 
 afterEach(() => {

@@ -21,7 +21,7 @@ export interface UseUserListingResult {
   setSortOrder: (order: SortOrder) => void
   cityOptions: SelectOption[]
   companyOptions: SelectOption[]
-  /** Usuários após busca → filtros → ordenação. */
+  /** Users after search → filters → sorting. */
   visibleUsers: User[]
 }
 
@@ -30,9 +30,9 @@ function toOptions(allLabel: string, values: string[]): SelectOption[] {
 }
 
 /**
- * Estado e regras da listagem: busca por nome, filtros de cidade e empresa e ordenação.
- * A lista visível é calculada na ordem busca → filtros → ordenação, então a ordenação
- * por nome sempre prevalece sobre a relevância da busca.
+ * Listing state and rules: name search, city and company filters, and sorting.
+ * The visible list is computed as search → filters → sorting, so sorting by name
+ * always prevails over search relevance.
  */
 export function useUserListing(users: User[]): UseUserListingResult {
   const [searchTerm, setSearchTerm] = useState('')

@@ -12,8 +12,8 @@ async function renderLoaded() {
   return { user, fetchMock }
 }
 
-describe('App — modal de detalhes (US09)', () => {
-  it('ao clicar em um usuário, abre o modal com os dados dele', async () => {
+describe('App — details modal (US09)', () => {
+  it('clicking a user opens the modal with their data', async () => {
     const { user } = await renderLoaded()
 
     await user.click(screen.getByRole('button', { name: /Leanne Graham/ }))
@@ -24,7 +24,7 @@ describe('App — modal de detalhes (US09)', () => {
     expect(within(dialog).getByText('Romaguera-Crona')).toBeInTheDocument()
   })
 
-  it('exibe os campos exigidos pelo desafio: nome, email, telefone, empresa e cidade', async () => {
+  it('shows the fields required by the challenge: name, email, phone, company and city', async () => {
     const { user } = await renderLoaded()
     const leanne = usersFixture[0]
 
@@ -42,7 +42,7 @@ describe('App — modal de detalhes (US09)', () => {
     }
   })
 
-  it('o botão de fechar fecha o modal', async () => {
+  it('the close button closes the modal', async () => {
     const { user } = await renderLoaded()
 
     await user.click(screen.getByRole('button', { name: /Leanne Graham/ }))
@@ -51,7 +51,7 @@ describe('App — modal de detalhes (US09)', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 
-  it('usa o usuário já carregado, sem nova requisição', async () => {
+  it('uses the already loaded user, without a new request', async () => {
     const { user, fetchMock } = await renderLoaded()
 
     await user.click(screen.getByRole('button', { name: /Leanne Graham/ }))

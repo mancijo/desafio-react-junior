@@ -12,8 +12,8 @@ async function renderLoaded(data: unknown = usersFixture) {
   return user
 }
 
-describe('App — nenhum usuário encontrado (US05)', () => {
-  it('exibe a mensagem no lugar da lista quando a busca não encontra ninguém', async () => {
+describe('App — no users found (US05)', () => {
+  it('shows the message instead of the list when the search finds no one', async () => {
     const user = await renderLoaded()
 
     await user.type(screen.getByLabelText('Buscar por nome'), 'xyz')
@@ -22,7 +22,7 @@ describe('App — nenhum usuário encontrado (US05)', () => {
     expect(screen.queryByRole('list')).not.toBeInTheDocument()
   })
 
-  it('exibe a mensagem quando os filtros não retornam ninguém', async () => {
+  it('shows the message when the filters return no one', async () => {
     const user = await renderLoaded()
 
     await user.selectOptions(screen.getByLabelText('Cidade'), 'Curitiba')
@@ -32,7 +32,7 @@ describe('App — nenhum usuário encontrado (US05)', () => {
     expect(screen.queryByRole('list')).not.toBeInTheDocument()
   })
 
-  it('a mensagem some e a lista volta quando a busca passa a ter resultados', async () => {
+  it('the message disappears and the list returns when the search has results', async () => {
     const user = await renderLoaded()
     const input = screen.getByLabelText('Buscar por nome')
 
@@ -45,7 +45,7 @@ describe('App — nenhum usuário encontrado (US05)', () => {
     expect(screen.getByText('Leanne Graham')).toBeInTheDocument()
   })
 
-  it('é anunciada a leitores de tela (role="status")', async () => {
+  it('is announced to screen readers (role="status")', async () => {
     const user = await renderLoaded()
 
     await user.type(screen.getByLabelText('Buscar por nome'), 'xyz')
@@ -53,7 +53,7 @@ describe('App — nenhum usuário encontrado (US05)', () => {
     expect(screen.getByRole('status')).toBeInTheDocument()
   })
 
-  it('mostra o termo buscado na mensagem', async () => {
+  it('shows the search term in the message', async () => {
     const user = await renderLoaded()
 
     await user.type(screen.getByLabelText('Buscar por nome'), 'xyz')
@@ -61,7 +61,7 @@ describe('App — nenhum usuário encontrado (US05)', () => {
     expect(screen.getByRole('status')).toHaveTextContent('Nenhum usuário encontrado para "xyz".')
   })
 
-  it('quando a API não retorna usuários, exibe "Nenhum usuário cadastrado."', async () => {
+  it('when the API returns no users, shows "Nenhum usuário cadastrado."', async () => {
     mockFetchSuccess([])
     render(<App />)
 

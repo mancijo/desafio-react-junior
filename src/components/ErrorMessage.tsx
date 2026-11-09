@@ -1,4 +1,4 @@
-/** Aviso de falha ao carregar os usuários, anunciado a leitores de tela. */
+/** Notice of a failure to load users, announced to screen readers. */
 export function ErrorMessage() {
   return (
     <div

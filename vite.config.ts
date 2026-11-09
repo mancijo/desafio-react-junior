@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Publicado em https://<usuário>.github.io/desafio-react-junior/ (GitHub Pages)
+  // Published at https://<user>.github.io/desafio-react-junior/ (GitHub Pages)
   base: '/desafio-react-junior/',
   plugins: [react(), tailwindcss()],
   test: {

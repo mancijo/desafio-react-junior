@@ -1,3 +1,4 @@
+import { LoadingSpinner } from './components/LoadingSpinner'
 import { UserList } from './components/UserList'
 import { useUsers } from './hooks/useUsers'
 
@@ -9,6 +10,7 @@ function App() {
       <main className="mx-auto max-w-content px-4 py-12">
         <h1 className="text-3xl font-extrabold text-heading dark:text-white">Lista de Usuários</h1>
         <div className="mt-8">
+          {status === 'loading' && <LoadingSpinner />}
           {status === 'success' && <UserList users={users} onSelect={() => {}} />}
         </div>
       </main>

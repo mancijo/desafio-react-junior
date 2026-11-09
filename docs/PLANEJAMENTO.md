@@ -1,7 +1,7 @@
 # Planejamento — Lista de Usuários (JSONPlaceholder)
 
 > Documento vivo de planejamento. Registra apenas o que foi **definido** pelo responsável do projeto.
-> Status: **em planejamento** — o desenvolvimento ainda não foi iniciado.
+> Status: **desenvolvimento concluído** — todas as histórias do backlog implementadas e publicadas em https://mancijo.github.io/desafio-react-junior/. Pontos assumidos durante o desenvolvimento em [PENDENCIAS.md](./PENDENCIAS.md).
 
 Última atualização: 09/11/2026
 
@@ -50,7 +50,8 @@ src/
 ├── components/   # componentes de interface
 ├── hooks/        # hooks próprios (ex.: requisição à API)
 ├── services/     # acesso à API
-└── types/        # tipos e interfaces TypeScript
+├── types/        # tipos e interfaces TypeScript
+└── utils/        # funções puras: busca, filtros, ordenação (ver PENDENCIAS.md, item 2)
 ```
 
 ### 4.3 Qualidade de código

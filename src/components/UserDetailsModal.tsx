@@ -1,4 +1,5 @@
-import { useId } from 'react'
+import { useId, useRef } from 'react'
+import { useModalBehavior } from '../hooks/useModalBehavior'
 import type { User } from '../types/user'
 import { DetailGroup, type DetailItem } from './DetailGroup'
 
@@ -48,16 +49,27 @@ function detailGroups(user: User): { title: string; items: DetailItem[] }[] {
 /** Modal com todos os dados do usuário, agrupados em Pessoal, Contato, Endereço e Empresa. */
 export function UserDetailsModal({ user, onClose }: UserDetailsModalProps) {
   const titleId = useId()
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  useModalBehavior(dialogRef, onClose, closeButtonRef)
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center">
-      <div aria-hidden="true" className="absolute inset-0 bg-navy/70 backdrop-blur-sm" />
+      <div
+        aria-hidden="true"
+        data-testid="modal-backdrop"
+        onClick={onClose}
+        className="absolute inset-0 bg-navy/70 backdrop-blur-sm"
+      />
 
       <div
+        ref={dialogRef}
+        tabIndex={-1}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-y-auto rounded-card-lg border border-border-subtle bg-white p-6 shadow-elevated sm:p-8 dark:bg-navy"
+        className="relative flex max-h-[90vh] outline-none w-full max-w-3xl flex-col overflow-y-auto rounded-card-lg border border-border-subtle bg-white p-6 shadow-elevated sm:p-8 dark:bg-navy"
       >
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -72,6 +84,7 @@ export function UserDetailsModal({ user, onClose }: UserDetailsModalProps) {
             </h2>
           </div>
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={onClose}
             aria-label="Fechar detalhes"

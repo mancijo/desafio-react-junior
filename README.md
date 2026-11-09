@@ -13,7 +13,7 @@ Aplicação em **React + Vite + TypeScript** que consome a API pública [JSONPla
   - tolera erros de digitação a partir de 3 letras (`Lenne Grahm` encontra "Leanne Graham"), com Fuse.js.
 - **Filtros** por cidade e por empresa (opções extraídas dos dados, em ordem alfabética).
 - **Ordenação** por nome, A–Z ou Z–A (títulos como "Mrs." são ignorados para ordenar).
-- **Modal de detalhes** com todos os dados do usuário, agrupados em Pessoal, Contato, Endereço e Empresa. Fecha pelo botão, com `Esc` ou clicando no fundo.
+- **Modal de detalhes** com nome completo, email, telefone, empresa e cidade. Fecha pelo botão, com `Esc` ou clicando no fundo.
 - **Estados visuais**: spinner de carregamento, mensagem de erro e aviso quando nenhum usuário é encontrado.
 - **Modo claro e escuro**: segue o sistema na primeira visita; a escolha feita no botão fica salva no navegador.
 - **Responsivo** a partir de 320 px e **acessível**: navegação por teclado, foco preso no modal, rótulos em todos os campos e contraste AA nos dois modos.

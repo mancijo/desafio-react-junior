@@ -14,11 +14,18 @@ import {
   type UserFilters,
 } from './utils/filters'
 import { searchUsersByName } from './utils/search'
+import { sortUsersByName, type SortOrder } from './utils/sort'
+
+const SORT_OPTIONS = [
+  { value: 'asc', label: 'A–Z' },
+  { value: 'desc', label: 'Z–A' },
+]
 
 function App() {
   const { users, status } = useUsers()
   const [searchTerm, setSearchTerm] = useState('')
   const [filters, setFilters] = useState<UserFilters>(NO_FILTERS)
+  const [sortOrder, setSortOrder] = useState<SortOrder>('asc')
 
   const cityOptions = useMemo(
     () => [
@@ -37,8 +44,8 @@ function App() {
   )
 
   const visibleUsers = useMemo(
-    () => filterUsers(searchUsersByName(users, searchTerm), filters),
-    [users, searchTerm, filters],
+    () => sortUsersByName(filterUsers(searchUsersByName(users, searchTerm), filters), sortOrder),
+    [users, searchTerm, filters, sortOrder],
   )
 
   return (
@@ -53,7 +60,7 @@ function App() {
           )}
           {status === 'success' && users.length > 0 && (
             <div className="flex flex-col gap-8">
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <SearchBar value={searchTerm} onChange={setSearchTerm} />
                 <SelectField
                   label="Cidade"
@@ -66,6 +73,12 @@ function App() {
                   value={filters.company}
                   options={companyOptions}
                   onChange={(company) => setFilters((current) => ({ ...current, company }))}
+                />
+                <SelectField
+                  label="Ordenar por nome"
+                  value={sortOrder}
+                  options={SORT_OPTIONS}
+                  onChange={(order) => setSortOrder(order === 'desc' ? 'desc' : 'asc')}
                 />
               </div>
               {visibleUsers.length > 0 ? (

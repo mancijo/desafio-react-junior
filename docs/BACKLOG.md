@@ -25,7 +25,7 @@ Uma história só está pronta quando:
 
 1. Os testes dos critérios de aceitação foram escritos **antes** da implementação e estão passando; os critérios *(verificação manual)* foram conferidos no navegador.
 2. Código tipado com TypeScript, sem `any` (implícito ou explícito), e organizado na estrutura por tipo (`components/`, `hooks/`, `services/`, `types/`).
-3. ESLint e Prettier sem erros; hooks do Husky + lint-staged passando no commit.
+3. Oxlint e Prettier sem erros; hooks do Husky + lint-staged passando no commit.
 4. Commits em Conventional Commits, branch integrada à `main` via merge.
 5. Quando a história tiver interface: funciona em celular e desktop (a partir da conclusão da US12) e nos modos claro e escuro (a partir da conclusão da US13).
 6. `npm install`, `npm run dev`, `npm test` e `npm run build` executam sem erros.
@@ -40,7 +40,7 @@ Uma história só está pronta quando:
 | TS01 | Criar o projeto base | Fundação | Must | RNF03, RNF05, 4.2 | — |
 | TS02 | Configurar Tailwind e tokens da identidade visual | Fundação | Must | 7.3 | TS01 |
 | TS03 | Configurar Vitest + React Testing Library | Fundação | Must | RNF06, 4.1 | TS01 |
-| TS04 | Configurar ESLint, Prettier, Husky e lint-staged | Fundação | Must | 4.3 | TS01 |
+| TS04 | Configurar Oxlint, Prettier, Husky e lint-staged | Fundação | Must | 4.3 | TS01 |
 | US01 | Ver a lista de usuários | Listagem | Must | RF01, RF02 | TS02, TS03, TS04 |
 | US02 | Ver indicação de carregamento | Listagem | Must | RF06 | US01 |
 | US03 | Ver mensagem de erro | Listagem | Must | RF06 | US01 |
@@ -122,14 +122,14 @@ Uma história só está pronta quando:
 
 ---
 
-### TS04 — Configurar ESLint, Prettier, Husky e lint-staged
+### TS04 — Configurar Oxlint, Prettier, Husky e lint-staged
 
 **Como** desenvolvedor, **quero** validação automática do código a cada commit, **para** manter o padrão de qualidade.
 
 **Critérios de aceitação**
 
-1. `npm run lint` executa o ESLint sem erros no projeto.
-2. Prettier configurado e compatível com o ESLint (sem regras conflitantes).
+1. `npm run lint` executa o Oxlint sem erros no projeto (configuração em `.oxlintrc.json`, criada pelo template na TS01).
+2. Prettier configurado e compatível com o Oxlint (sem regras de estilo conflitantes).
 3. Ao fazer um commit, o Husky executa o lint-staged sobre os arquivos alterados.
 4. Um commit com erro de lint é bloqueado.
 

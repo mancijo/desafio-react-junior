@@ -22,7 +22,7 @@ Instruções para o Claude Code neste repositório. Antes de qualquer tarefa, le
 - Requisições com `fetch` nativo encapsulado em hook próprio (ex.: `useUsers`)
 - Busca aproximada com Fuse.js
 - Testes: Vitest + React Testing Library (configuração no `vite.config.ts`, ambiente `jsdom`)
-- Qualidade: ESLint, Prettier, Husky + lint-staged
+- Qualidade: Oxlint (`.oxlintrc.json`), Prettier, Husky + lint-staged
 
 ## Comandos
 
@@ -30,7 +30,7 @@ Instruções para o Claude Code neste repositório. Antes de qualquer tarefa, le
 npm install      # instalar dependências
 npm run dev      # rodar em desenvolvimento
 npm test         # rodar os testes (Vitest)
-npm run lint     # ESLint
+npm run lint     # Oxlint
 npm run build    # build de produção
 ```
 

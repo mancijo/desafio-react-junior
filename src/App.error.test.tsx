@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import App from './App'
-import { mockFetchHttpError, mockFetchNetworkError } from './test/fetchMock'
+import { mockFetchHttpError, mockFetchNetworkError, mockFetchSuccess } from './test/fetchMock'
 
 describe('App — erro (US03)', () => {
   it('exibe o componente de erro quando a API responde com status de erro', async () => {
@@ -26,5 +26,16 @@ describe('App — erro (US03)', () => {
     await screen.findByRole('alert')
     expect(screen.queryByRole('list')).not.toBeInTheDocument()
     expect(screen.queryByText('Carregando usuários')).not.toBeInTheDocument()
+  })
+})
+
+describe('App — resposta inesperada da API', () => {
+  it('exibe o componente de erro em vez de quebrar quando a API não devolve uma lista', async () => {
+    mockFetchSuccess({ erro: 'formato inesperado' })
+    render(<App />)
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      'Não foi possível carregar os usuários.',
+    )
   })
 })

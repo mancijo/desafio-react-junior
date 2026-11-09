@@ -41,4 +41,25 @@ describe('fetchUsers', () => {
 
     await expect(fetchUsers()).rejects.toThrow()
   })
+
+  it('lança erro quando a resposta não é uma lista', async () => {
+    mockFetchSuccess({ message: 'formato inesperado' })
+
+    await expect(fetchUsers()).rejects.toThrow('formato inesperado')
+  })
+
+  it('lança erro quando um item da lista não tem os campos de um usuário', async () => {
+    mockFetchSuccess([usersFixture[0], { id: 2, name: 'Sem email' }])
+
+    await expect(fetchUsers()).rejects.toThrow('formato inesperado')
+  })
+
+  it('lança erro quando o corpo não é JSON válido', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => new Response('<html>', { status: 200 })),
+    )
+
+    await expect(fetchUsers()).rejects.toThrow()
+  })
 })

@@ -25,6 +25,16 @@ export function mockFetchNetworkError(): FetchMock {
   })
 }
 
+/** `fetch` that responds 200 with the JSON registered for each URL (404 for any other URL). */
+export function mockFetchByUrl(responses: Record<string, unknown>): FetchMock {
+  return install(async (input) => {
+    const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url
+    return url in responses
+      ? new Response(JSON.stringify(responses[url]), { status: 200 })
+      : new Response('not found', { status: 404 })
+  })
+}
+
 /**
  * `fetch` that only finishes when `resolve` is called.
  * Honors the AbortSignal: rejects with AbortError if the request is aborted.

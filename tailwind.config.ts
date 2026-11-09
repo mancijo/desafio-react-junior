@@ -31,6 +31,8 @@ export default {
         'secondary-dark': '#172033',
         body: '#475569',
         'border-subtle': 'rgba(148, 163, 184, 0.32)',
+        // Borda de campos de formulário: contraste 3:1 exigido para componentes (WCAG 1.4.11)
+        'border-strong': '#64748B',
         glass: {
           DEFAULT: 'rgba(255, 255, 255, 0.05)',
           strong: 'rgba(255, 255, 255, 0.10)',

@@ -1,9 +1,5 @@
 import { useId } from 'react'
-
-export interface SelectOption {
-  value: string
-  label: string
-}
+import type { SelectOption } from '../types/selectOption'
 
 interface SelectFieldProps {
   label: string

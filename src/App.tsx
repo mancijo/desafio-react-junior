@@ -1,79 +1,34 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { EmptyState } from './components/EmptyState'
 import { ErrorMessage } from './components/ErrorMessage'
 import { Header } from './components/Header'
+import { ListingControls } from './components/ListingControls'
 import { LoadingSpinner } from './components/LoadingSpinner'
-import { SearchBar } from './components/SearchBar'
-import { SelectField } from './components/SelectField'
+import { PageIntro } from './components/PageIntro'
 import { ThemeToggle } from './components/ThemeToggle'
 import { UserDetailsModal } from './components/UserDetailsModal'
 import { UserList } from './components/UserList'
 import { useTheme } from './hooks/useTheme'
+import { useUserListing } from './hooks/useUserListing'
 import { useUsers } from './hooks/useUsers'
 import type { User } from './types/user'
-import {
-  NO_FILTERS,
-  filterUsers,
-  getCityOptions,
-  getCompanyOptions,
-  type UserFilters,
-} from './utils/filters'
-import { searchUsersByName } from './utils/search'
-import { sortUsersByName, type SortOrder } from './utils/sort'
 
-const SORT_OPTIONS = [
-  { value: 'asc', label: 'A–Z' },
-  { value: 'desc', label: 'Z–A' },
-]
+function noResultsTitle(searchTerm: string): string {
+  const term = searchTerm.trim()
+  return term ? `Nenhum usuário encontrado para "${term}".` : 'Nenhum usuário encontrado.'
+}
 
 function App() {
   const { users, status } = useUsers()
   const { theme, toggleTheme } = useTheme()
-  const [searchTerm, setSearchTerm] = useState('')
-  const [filters, setFilters] = useState<UserFilters>(NO_FILTERS)
-  const [sortOrder, setSortOrder] = useState<SortOrder>('asc')
+  const listing = useUserListing(users)
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
-
-  const cityOptions = useMemo(
-    () => [
-      { value: '', label: 'Todas as cidades' },
-      ...getCityOptions(users).map((city) => ({ value: city, label: city })),
-    ],
-    [users],
-  )
-
-  const companyOptions = useMemo(
-    () => [
-      { value: '', label: 'Todas as empresas' },
-      ...getCompanyOptions(users).map((company) => ({ value: company, label: company })),
-    ],
-    [users],
-  )
-
-  const visibleUsers = useMemo(
-    () => sortUsersByName(filterUsers(searchUsersByName(users, searchTerm), filters), sortOrder),
-    [users, searchTerm, filters, sortOrder],
-  )
 
   return (
     <>
       <Header actions={<ThemeToggle theme={theme} onToggle={toggleTheme} />} />
       <main className="mx-auto max-w-content px-4 pt-[calc(62px+3rem)] pb-16 sm:pt-[calc(62px+4rem)]">
-        <section aria-labelledby="page-title" className="max-w-3xl">
-          <p className="text-xs font-semibold tracking-[0.2em] text-primary-dark uppercase dark:text-primary">
-            JSONPlaceholder
-          </p>
-          <h1
-            id="page-title"
-            className="mt-3 text-3xl leading-[1.08] font-extrabold text-heading uppercase sm:text-5xl dark:text-white"
-          >
-            Lista de Usuários
-          </h1>
-          <p className="mt-4 text-body dark:text-white/72">
-            Busque pelo nome, filtre por cidade ou empresa e clique em um usuário para ver os
-            detalhes.
-          </p>
-        </section>
+        <PageIntro />
         <div className="mt-10">
           {status === 'loading' && <LoadingSpinner />}
           {status === 'error' && <ErrorMessage />}
@@ -82,36 +37,12 @@ function App() {
           )}
           {status === 'success' && users.length > 0 && (
             <div className="flex flex-col gap-8">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <SearchBar value={searchTerm} onChange={setSearchTerm} />
-                <SelectField
-                  label="Cidade"
-                  value={filters.city}
-                  options={cityOptions}
-                  onChange={(city) => setFilters((current) => ({ ...current, city }))}
-                />
-                <SelectField
-                  label="Empresa"
-                  value={filters.company}
-                  options={companyOptions}
-                  onChange={(company) => setFilters((current) => ({ ...current, company }))}
-                />
-                <SelectField
-                  label="Ordenar por nome"
-                  value={sortOrder}
-                  options={SORT_OPTIONS}
-                  onChange={(order) => setSortOrder(order === 'desc' ? 'desc' : 'asc')}
-                />
-              </div>
-              {visibleUsers.length > 0 ? (
-                <UserList users={visibleUsers} onSelect={(user) => setSelectedUser(user)} />
+              <ListingControls {...listing} />
+              {listing.visibleUsers.length > 0 ? (
+                <UserList users={listing.visibleUsers} onSelect={setSelectedUser} />
               ) : (
                 <EmptyState
-                  title={
-                    searchTerm.trim()
-                      ? `Nenhum usuário encontrado para "${searchTerm.trim()}".`
-                      : 'Nenhum usuário encontrado.'
-                  }
+                  title={noResultsTitle(listing.searchTerm)}
                   description="Tente outro nome ou altere os filtros."
                 />
               )}

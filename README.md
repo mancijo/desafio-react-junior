@@ -64,14 +64,14 @@ O endereço aparece no terminal (por padrão, http://localhost:5173/desafio-reac
 npm test
 ```
 
-São 106 testes, escritos **antes** da implementação (TDD), um por critério de aceitação do backlog. Eles nunca chamam a API real: usam `fetch` simulado e dados de exemplo com nomes acentuados (os dados reais não têm acentos).
+Os testes foram escritos **antes** da implementação (TDD), um por critério de aceitação do backlog. Eles nunca chamam a API real: usam `fetch` simulado e dados de exemplo com nomes acentuados (os dados reais não têm acentos).
 
 ## Estrutura
 
 ```
 src/
 ├── components/   # componentes de interface (cards, modal, campos, estados)
-├── hooks/        # useUsers, useTheme, useModalBehavior
+├── hooks/        # useUsers, useUserListing, useTheme, useModalBehavior
 ├── services/     # acesso à API (fetchUsers)
 ├── types/        # User, Address, Company, Geo
 ├── utils/        # funções puras: busca, filtros, ordenação, normalização de texto

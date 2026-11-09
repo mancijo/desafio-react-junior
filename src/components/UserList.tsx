@@ -3,7 +3,7 @@ import { UserCard } from './UserCard'
 
 interface UserListProps {
   users: User[]
-  onSelect: (user: User, trigger: HTMLButtonElement) => void
+  onSelect: (user: User) => void
 }
 
 /** Lista de usuários em cards (nome e email). */

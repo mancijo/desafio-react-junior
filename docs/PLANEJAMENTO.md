@@ -291,6 +291,8 @@ Nenhuma no momento.
 | 09/11/2026 | Componentes do guia só são criados quando usados; tokens completos no `tailwind.config` |
 | 09/11/2026 | Backlog: DoD proíbe `any` implícito e explícito; critérios estruturais marcados como *revisão de código*; requisição cancelada com `AbortController`; mensagem de lista vazia com `role="status"` |
 | 09/11/2026 | Análise estática alterada de ESLint para **Oxlint**, que já vem no template atual do Vite |
+| 09/11/2026 | Desenvolvimento contínuo autorizado (todas as histórias, com commits, merges e push); pendências não essenciais registradas em `docs/PENDENCIAS.md` e revisadas no final |
+| 09/11/2026 | TS02: Tailwind v4 com os tokens em `tailwind.config.ts` (carregado via `@config`) e fonte Plus Jakarta Sans servida pelo projeto (Fontsource), sem depender do Google Fonts |
 | 09/11/2026 | Propostas do backlog confirmadas: termo buscado na mensagem de lista vazia; mensagem quando a API não retorna usuários; modal usa o usuário já carregado (sem nova requisição); clique fora fecha o modal; tema aplicado antes de o React montar (sem piscar); deploy automático via GitHub Actions |
 | 09/11/2026 | Propostas do backlog descartadas: email e website como links no modal; anúncio da contagem de resultados com `aria-live` |
 | 09/11/2026 | Nome do repositório: `desafio-react-junior` (define o `base` do Vite e o endereço do GitHub Pages) |

@@ -9,16 +9,18 @@ Instruções para o Claude Code neste repositório. Antes de qualquer tarefa, le
 
 ## Regras de trabalho
 
-- **Não inicie o desenvolvimento sem pedido explícito.** Implemente apenas a história solicitada (ex.: "implemente a US04"), nada além dela.
-- **Não tome decisões de produto por conta própria.** Se algo não estiver definido no planejamento ou no backlog, pergunte antes. Itens marcados *(proposta)* no backlog só entram se forem confirmados.
-- **Exceção — textos da interface:** você está autorizado a definir os textos de cada história durante a implementação (título, rótulos, placeholders, mensagens, `aria-label`). Escreva em pt-BR, curtos e claros; mantenha os valores da API no original. Liste os textos usados no registro da etapa em `docs/`, para revisão na entrega.
+- **Desenvolvimento contínuo autorizado.** Você pode desenvolver o sistema inteiro, história após história, na ordem de dependências do backlog, sem esperar pedido a cada etapa.
+- **Pendências não bloqueiam.** Se algo não estiver definido no planejamento ou no backlog, adote a opção mais simples e coerente com as decisões já tomadas, siga em frente e anote a pendência em `docs/PENDENCIAS.md` (o que foi assumido e por quê). Essas pendências são apresentadas ao responsável **no final do desenvolvimento**. Só pare para perguntar se a dúvida for essencial (ex.: impede a entrega ou contradiz uma decisão registrada).
+- Itens marcados *(proposta)* no backlog só entram se forem confirmados.
+- **Textos da interface:** você define os textos de cada história (título, rótulos, placeholders, mensagens, `aria-label`). Escreva em pt-BR, curtos e claros; mantenha os valores da API no original. Liste os textos usados no registro da etapa em `docs/`, para revisão na entrega.
 - Ao surgir uma nova decisão, registre-a no `docs/PLANEJAMENTO.md` (seção e histórico de decisões).
 - Responda e documente em **português (pt-BR)**.
 
 ## Stack
 
 - React + Vite + TypeScript
-- Tailwind CSS (`darkMode: 'class'`, tokens da identidade visual no `tailwind.config`)
+- Tailwind CSS v4 (`darkMode: 'class'`, tokens da identidade visual no `tailwind.config.ts`, carregado com `@config` em `src/index.css`)
+- Fonte Plus Jakarta Sans servida pelo projeto (`@fontsource-variable/plus-jakarta-sans`)
 - Requisições com `fetch` nativo encapsulado em hook próprio (ex.: `useUsers`)
 - Busca aproximada com Fuse.js
 - Testes: Vitest + React Testing Library (configuração no `vite.config.ts`, ambiente `jsdom`)
@@ -65,8 +67,8 @@ src/
 
 - Uma branch por história, com o nome indicado no backlog (ex.: `feat/name-search`, `chore/vitest-setup`).
 - Commits em **Conventional Commits**: `feat:`, `fix:`, `test:`, `docs:`, `chore:`, `refactor:`, `style:`.
-- Integração na `main` via merge, só com testes, lint e build passando.
-- Não faça push, merge ou deploy sem pedido.
+- Integração na `main` via merge (`--no-ff`), só com testes, lint e build passando.
+- **Commits, merges e push autorizados**: ao concluir cada história, faça o merge na `main` e envie a `main` e a branch ao GitHub (`origin`). Nunca use `--force` nem reescreva o histórico já publicado.
 
 ## Regras de comportamento já decididas
 

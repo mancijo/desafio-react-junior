@@ -8,9 +8,11 @@ const FUZZY_MIN_LENGTH = 3
 /**
  * Fuzzy search tolerance (0 = exact only, 1 = anything).
  * Strict on purpose: exact substrings are always included, so Fuse.js
- * only needs to cover small typos.
+ * only needs to cover small typos. At 0.2, one typo is tolerated in terms with
+ * 5+ letters and two typos in terms with 10+ letters; weak candidates such as
+ * "lean" → "Glenna" (matched at 0.3) are rejected.
  */
-const FUZZY_THRESHOLD = 0.3
+const FUZZY_THRESHOLD = 0.2
 
 /**
  * Filters users by name (`name`), ignoring case and accents.

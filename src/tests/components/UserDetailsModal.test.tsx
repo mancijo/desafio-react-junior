@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { fixtureUser } from '../test/fixtures/users'
-import { UserDetailsModal } from './UserDetailsModal'
+import { fixtureUser } from '../fixtures/users'
+import { UserDetailsModal } from '../../components/UserDetailsModal'
 
 const user = fixtureUser('José Araújo')
 

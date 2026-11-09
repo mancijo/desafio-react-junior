@@ -1,8 +1,8 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { act } from 'react'
-import App from './App'
-import { mockFetchHttpError, mockFetchPending } from './test/fetchMock'
-import { usersFixture } from './test/fixtures/users'
+import App from '../../App'
+import { mockFetchHttpError, mockFetchPending } from '../mocks/fetchMock'
+import { usersFixture } from '../fixtures/users'
 
 describe('App — carregamento (US02)', () => {
   it('exibe o spinner enquanto a requisição não terminou', () => {

@@ -1,5 +1,5 @@
-import { usersFixture } from '../test/fixtures/users'
-import { searchUsersByName } from './search'
+import { usersFixture } from '../fixtures/users'
+import { searchUsersByName } from '../../utils/search'
 
 const names = (term: string) => searchUsersByName(usersFixture, term).map((u) => u.name)
 

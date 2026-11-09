@@ -1,6 +1,6 @@
-import { mockFetchHttpError, mockFetchNetworkError, mockFetchSuccess } from '../test/fetchMock'
-import { usersFixture } from '../test/fixtures/users'
-import { USERS_URL, fetchUsers } from './usersApi'
+import { mockFetchHttpError, mockFetchNetworkError, mockFetchSuccess } from '../mocks/fetchMock'
+import { usersFixture } from '../fixtures/users'
+import { USERS_URL, fetchUsers } from '../../services/usersApi'
 
 describe('fetchUsers', () => {
   it('faz um GET no endpoint de usuários do JSONPlaceholder', async () => {

@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import App from './App'
-import { mockFetchSuccess } from './test/fetchMock'
-import { usersFixture } from './test/fixtures/users'
+import App from '../../App'
+import { mockFetchSuccess } from '../mocks/fetchMock'
+import { usersFixture } from '../fixtures/users'
 
 async function renderLoaded(data: unknown = usersFixture) {
   mockFetchSuccess(data)

@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react'
-import App from './App'
-import { mockFetchSuccess } from './test/fetchMock'
-import { usersFixture } from './test/fixtures/users'
+import App from '../../App'
+import { mockFetchSuccess } from '../mocks/fetchMock'
+import { usersFixture } from '../fixtures/users'
 
 describe('App — identidade visual e estrutura (US11)', () => {
   it('tem um header (landmark banner) com o nome da aplicação', () => {

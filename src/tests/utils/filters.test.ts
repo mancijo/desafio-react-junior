@@ -1,5 +1,5 @@
-import { usersFixture } from '../test/fixtures/users'
-import { filterUsers, getCityOptions, getCompanyOptions } from './filters'
+import { usersFixture } from '../fixtures/users'
+import { filterUsers, getCityOptions, getCompanyOptions } from '../../utils/filters'
 
 describe('getCityOptions', () => {
   it('extrai as cidades dos dados, sem repetições e em ordem alfabética pt-BR', () => {

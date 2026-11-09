@@ -5,8 +5,10 @@ import { Header } from './components/Header'
 import { LoadingSpinner } from './components/LoadingSpinner'
 import { SearchBar } from './components/SearchBar'
 import { SelectField } from './components/SelectField'
+import { ThemeToggle } from './components/ThemeToggle'
 import { UserDetailsModal } from './components/UserDetailsModal'
 import { UserList } from './components/UserList'
+import { useTheme } from './hooks/useTheme'
 import { useUsers } from './hooks/useUsers'
 import type { User } from './types/user'
 import {
@@ -26,6 +28,7 @@ const SORT_OPTIONS = [
 
 function App() {
   const { users, status } = useUsers()
+  const { theme, toggleTheme } = useTheme()
   const [searchTerm, setSearchTerm] = useState('')
   const [filters, setFilters] = useState<UserFilters>(NO_FILTERS)
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc')
@@ -54,7 +57,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header actions={<ThemeToggle theme={theme} onToggle={toggleTheme} />} />
       <main className="mx-auto max-w-content px-4 pt-[calc(62px+3rem)] pb-16 sm:pt-[calc(62px+4rem)]">
         <section aria-labelledby="page-title" className="max-w-3xl">
           <p className="text-xs font-semibold tracking-[0.2em] text-primary-dark uppercase dark:text-primary">

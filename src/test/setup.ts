@@ -10,6 +10,7 @@ mockMatchMedia(false)
 afterEach(() => {
   cleanup()
   vi.unstubAllGlobals()
+  vi.restoreAllMocks()
   localStorage.clear()
   document.documentElement.classList.remove('dark')
   mockMatchMedia(false)

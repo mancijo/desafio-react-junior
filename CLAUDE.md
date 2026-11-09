@@ -57,7 +57,9 @@ src/
 ├── components/   # componentes de interface
 ├── hooks/        # hooks próprios (ex.: useUsers, useUserSearch)
 ├── services/     # acesso à API
-└── types/        # User, Address, Company, Geo
+├── types/        # User, Address, Company, Geo
+├── utils/        # funções puras: busca, filtros, ordenação, texto
+└── test/         # setup, mocks (fetch, matchMedia) e fixtures
 ```
 
 - Código totalmente tipado; sem `any`.

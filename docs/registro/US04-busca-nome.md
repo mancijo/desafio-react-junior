@@ -49,7 +49,7 @@ Além dos testes, a busca foi conferida com os 10 nomes reais do JSONPlaceholder
 ## Decisões
 
 - `threshold` de 0,3: tolera um ou dois erros de digitação em nomes de tamanho médio e não traz resultados para termos sem relação.
-- Funções puras em `src/utils/` (ver `docs/PENDENCIAS.md`, item 1).
+- Funções puras em `src/utils/` (ver `docs/PENDENCIAS.md`, item 2).
 
 ## Textos da interface
 

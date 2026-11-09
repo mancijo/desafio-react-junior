@@ -24,7 +24,7 @@
 | 2. `npm run build` sem erros | local e no workflow | OK |
 | 3. `base` correto, sem 404 nos assets | `vite preview` local: `index.html`, JS, CSS e favicon com HTTP 200; fontes com o prefixo `/desafio-react-junior/` | OK |
 | 4. Publicação automática a cada atualização da `main` | workflow com `on: push: branches: [main]` | OK |
-| 5. Link no `README.md` | feito na TS06 | — |
+| 5. Link no `README.md` | feito na TS06 | OK |
 
 ## Decisões
 
@@ -34,3 +34,7 @@
 ## Textos da interface
 
 Nenhum texto novo.
+
+## Atualização posterior
+
+- O primeiro deploy (HTTP 200 em https://mancijo.github.io/desafio-react-junior/, 10 usuários carregados, sem erros no console) gerou avisos de que as actions usavam Node 20, que está obsoleto. Elas foram atualizadas para `checkout@v7`, `setup-node@v7`, `configure-pages@v6`, `upload-pages-artifact@v5` e `deploy-pages@v5`, e o deploy seguinte passou sem avisos.

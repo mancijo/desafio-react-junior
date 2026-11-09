@@ -10,7 +10,7 @@ Instruções para o Claude Code neste repositório. Antes de qualquer tarefa, le
 ## Regras de trabalho
 
 - **Desenvolvimento contínuo autorizado.** Você pode desenvolver o sistema inteiro, história após história, na ordem de dependências do backlog, sem esperar pedido a cada etapa.
-- **Pendências não bloqueiam.** Se algo não estiver definido no planejamento ou no backlog, adote a opção mais simples e coerente com as decisões já tomadas, siga em frente e anote a pendência em `docs/PENDENCIAS.md` (o que foi assumido e por quê). Essas pendências são apresentadas ao responsável **no final do desenvolvimento**. Só pare para perguntar se a dúvida for essencial (ex.: impede a entrega ou contradiz uma decisão registrada).
+- **Pendências não bloqueiam.** Se algo não estiver definido no planejamento ou no backlog, adote a opção mais simples e coerente com as decisões já tomadas, siga em frente e anote o que foi assumido, e por quê, na seção "Decisões" do registro da história em `docs/registro/`. Esses pontos são apresentados ao responsável **no final do desenvolvimento**. Só pare para perguntar se a dúvida for essencial (ex.: impede a entrega ou contradiz uma decisão registrada).
 - Itens marcados *(proposta)* no backlog só entram se forem confirmados.
 - **Textos da interface:** você define os textos de cada história (título, rótulos, placeholders, mensagens, `aria-label`). Escreva em pt-BR, curtos e claros; mantenha os valores da API no original. Liste os textos usados no registro da etapa em `docs/`, para revisão na entrega.
 - Ao surgir uma nova decisão, registre-a no `docs/PLANEJAMENTO.md` (seção e histórico de decisões).

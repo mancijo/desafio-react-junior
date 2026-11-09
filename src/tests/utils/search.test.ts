@@ -59,6 +59,15 @@ describe('searchUsersByName', () => {
     }
   })
 
+  it('rejects weak fuzzy candidates: "lean" finds only "Leanne Graham", not "Glenna Reichert"', () => {
+    expect(names('lean')).toEqual(['Leanne Graham'])
+  })
+
+  it('tolerates one typo in terms with 5 or more letters', () => {
+    expect(names('glena')).toEqual(['Glenna Reichert'])
+    expect(names('eduado')).toEqual(['Eduardo Lima'])
+  })
+
   it('does not change the original order of users', () => {
     const all = searchUsersByName(usersFixture, '')
     expect(all).toEqual(usersFixture)

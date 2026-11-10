@@ -52,7 +52,7 @@ Os valores ficam como tokens em `tailwind.config.ts`. Diferente do site, a pági
 | Qualidade | Oxlint, Prettier, Husky + lint-staged |
 | Deploy | GitHub Actions → GitHub Pages |
 
-## Como rodar
+## Como executar
 
 Pré-requisito: **Node.js 20.19+ ou 22.12+** (exigência do Vite 8; desenvolvido com Node 24).
 
@@ -68,7 +68,7 @@ O endereço aparece no terminal (por padrão, <a href="http://localhost:5173/des
 | Comando | O que faz |
 |---------|-----------|
 | `npm run dev` | servidor de desenvolvimento |
-| `npm test` | roda todos os testes uma vez |
+| `npm test` | executa todos os testes uma vez |
 | `npm run test:watch` | testes em modo observação |
 | `npm run lint` | análise estática com Oxlint |
 | `npm run format` | formata o código com Prettier |
@@ -120,7 +120,7 @@ Nessa branch, um seletor "Fonte de dados" troca os 10 usuários pelas 200 tarefa
 
 Conclusão: com 20 vezes mais dados, toda interação fica abaixo de 40 ms. O gargalo é desenhar os cards, não a busca; a lógica só passaria de 100 ms por tecla perto de 10.000 itens. O relatório completo, com as tabelas e as melhorias sugeridas para volumes maiores, está em <a href="https://github.com/mancijo/desafio-react-junior/blob/experiment/stress-todos/docs/registro/estresse-tarefas.md" target="_blank" rel="noopener noreferrer"><code>docs/registro/estresse-tarefas.md</code></a>, na própria branch.
 
-Para rodar o experimento:
+Para executar o experimento:
 
 ```bash
 git checkout experiment/stress-todos

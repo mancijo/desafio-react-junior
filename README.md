@@ -105,6 +105,29 @@ src/
     └── setup.ts      # configuração do Vitest
 ```
 
+## Experimento: teste de estresse com 200 tarefas
+
+Para ver como a busca com Fuse.js e o restante da listagem se comportam com mais dados, existe a branch <a href="https://github.com/mancijo/desafio-react-junior/tree/experiment/stress-todos" target="_blank" rel="noopener noreferrer"><code>experiment/stress-todos</code></a>. Ela **não faz parte da entrega** e não foi integrada à `main`: é um experimento à parte, e a aplicação publicada continua exibindo apenas os usuários.
+
+Nessa branch, um seletor "Fonte de dados" troca os 10 usuários pelas 200 tarefas de <a href="https://jsonplaceholder.typicode.com/todos" target="_blank" rel="noopener noreferrer"><code>/todos</code></a>. Como uma tarefa tem outra estrutura (`userId`, `id`, `title`, `completed`), um adaptador a converte para o formato que a listagem já entende: o título vira o texto buscado e ordenado, e o status e o usuário viram os dois filtros.
+
+| Medição com 200 itens (build de produção) | Resultado |
+|---|---|
+| Busca, filtros e ordenação juntos (só a lógica) | menos de 3 ms |
+| Digitar uma letra e redesenhar 138 cards | 36,5 ms |
+| Busca aproximada (`del`, `delectus aut`) | 6 a 7 ms |
+| Ordenar os 200 cards | cerca de 25 ms |
+
+Conclusão: com 20 vezes mais dados, toda interação fica abaixo de 40 ms. O gargalo é desenhar os cards, não a busca; a lógica só passaria de 100 ms por tecla perto de 10.000 itens. O relatório completo, com as tabelas e as melhorias sugeridas para volumes maiores, está em <a href="https://github.com/mancijo/desafio-react-junior/blob/experiment/stress-todos/docs/registro/estresse-tarefas.md" target="_blank" rel="noopener noreferrer"><code>docs/registro/estresse-tarefas.md</code></a>, na própria branch.
+
+Para rodar o experimento:
+
+```bash
+git checkout experiment/stress-todos
+npm install
+npm run dev
+```
+
 ## Documentação do desenvolvimento
 
 - <a href="docs/PLANEJAMENTO.md" target="_blank" rel="noopener noreferrer"><code>docs/PLANEJAMENTO.md</code></a>: decisões do projeto e histórico.

@@ -3,7 +3,7 @@
 > Documento vivo de planejamento. Registra apenas o que foi **definido** pelo responsável do projeto.
 > Status: **desenvolvimento concluído** — todas as histórias do backlog implementadas e publicadas em https://mancijo.github.io/desafio-react-junior/. Os pontos assumidos durante o desenvolvimento estão na seção "Decisões" de cada registro em [registro/](./registro).
 
-Última atualização: 09/11/2026
+Última atualização: 12/11/2026
 
 ---
 
@@ -298,6 +298,7 @@ Nenhuma no momento.
 | 09/11/2026 | Mocks de API existem **só nos testes**; a aplicação sempre consome a API real |
 | 09/11/2026 | Busca mais exata: `threshold` do Fuse.js reduzido de 0,3 para **0,2** pelo responsável (elimina correspondências fracas, como `lean` → "Glenna Reichert") |
 | 09/11/2026 | `docs/PENDENCIAS.md` removido pelo responsável: os 5 pontos assumidos foram aceitos e seguem registrados na seção "Decisões" dos registros das histórias |
+| 12/11/2026 | Revisão do código após a entrega: cinco pontos de melhoria identificados e documentados em `docs/MELHORIAS.md`, sem correção por decisão do responsável |
 | 09/11/2026 | Nome do repositório: `desafio-react-junior` (define o `base` do Vite e o endereço do GitHub Pages) |
 | 09/11/2026 | Sem estimativas, sprints ou prazo: a implementação é feita com IA, história por história, com revisão do responsável ao fim de cada uma |
 | 09/11/2026 | Textos da interface: definidos pelo Claude Code em cada história, em pt-BR, listados no registro da etapa em `docs/` e revisados pelo responsável na entrega; valores da API mantidos no original |

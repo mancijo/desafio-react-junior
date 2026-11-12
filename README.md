@@ -133,6 +133,7 @@ npm run dev
 - <a href="docs/PLANEJAMENTO.md" target="_blank" rel="noopener noreferrer"><code>docs/PLANEJAMENTO.md</code></a>: decisões do projeto e histórico.
 - <a href="docs/BACKLOG.md" target="_blank" rel="noopener noreferrer"><code>docs/BACKLOG.md</code></a>: histórias, critérios de aceitação e Definição de Pronto.
 - <a href="docs/registro" target="_blank" rel="noopener noreferrer"><code>docs/registro/</code></a>: registro de cada história (o que foi feito, testes, decisões e textos).
+- <a href="docs/MELHORIAS.md" target="_blank" rel="noopener noreferrer"><code>docs/MELHORIAS.md</code></a>: pontos fracos conhecidos do código, ainda não corrigidos, e como resolver cada um.
 - <a href="docs/testereactjunior.pdf" target="_blank" rel="noopener noreferrer"><code>docs/testereactjunior.pdf</code></a>: enunciado do desafio.
 
 O desenvolvimento seguiu uma branch por história, com commits em Conventional Commits e integração na `main` por merge.
